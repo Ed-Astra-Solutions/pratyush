@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://www.pratyushliftz.com/</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image><image:loc>https://www.pratyushliftz.com/images/pl-og-image.jpg</image:loc><image:title>Pratyush Liftz - Lose fat, build muscle, busy or not</image:title></image:image>
+    <image:image><image:loc>https://www.pratyushliftz.com/images/pl-pratyush-coach-training.jpg</image:loc><image:title>Pratyush training - online coach for busy professionals</image:title></image:image>
+    <image:image><image:loc>https://www.pratyushliftz.com/images/pl-pratyush-founder-poster.jpg</image:loc><image:title>Meet Pratyush - Founder, Pratyush Liftz</image:title></image:image>
+    <image:image><image:loc>https://www.pratyushliftz.com/images/pl-team-banner-welcome.jpg</image:loc><image:title>Welcome to Team PL</image:title></image:image>
+    <image:image><image:loc>https://www.pratyushliftz.com/images/pl-transformation-harsh.jpg</image:loc><image:title>Harsh - 31 lbs down in 5 months</image:title></image:image>
+    <image:image><image:loc>https://www.pratyushliftz.com/images/pl-transformation-dad.jpg</image:loc><image:title>32-year-old dad - 26 lbs down</image:title></image:image>
+    <image:image><image:loc>https://www.pratyushliftz.com/images/pl-transformation-parth.jpg</image:loc><image:title>Parth - 90 day transformation</image:title></image:image>
+    <image:image><image:loc>https://www.pratyushliftz.com/images/pl-transformation-chandra.jpg</image:loc><image:title>Chandra - 96kg to 86kg in 3 months</image:title></image:image>
+    <image:image><image:loc>https://www.pratyushliftz.com/images/pl-transformation-garv.jpg</image:loc><image:title>Garv - 10 month beginner transformation</image:title></image:image>
+    <image:image><image:loc>https://www.pratyushliftz.com/images/pl-transformation-fayaz.jpg</image:loc><image:title>Fayaz - 30 day transformation</image:title></image:image>
+  </url>
+  <url>
+    <loc>https://www.pratyushliftz.com/blog/</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>
