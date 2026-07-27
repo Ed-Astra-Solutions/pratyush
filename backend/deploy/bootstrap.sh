@@ -52,7 +52,7 @@ Done. Remaining steps:
        sudo nano $APP_DIR/.env
   3. Start it:
        sudo systemctl restart pl-admin-api
-       curl -s localhost:8080/health
+       curl -s localhost:3005/health
   4. Get a certificate (the console is HTTPS, so the API must be too):
        sudo apt-get install -y certbot python3-certbot-nginx
        sudo certbot --nginx -d $DOMAIN

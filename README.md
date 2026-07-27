@@ -73,8 +73,8 @@ CI runs it before every deploy.
 
 The admin console lives in its own repository,
 [Ed-Astra-Solutions/pratyushAdmin](https://github.com/Ed-Astra-Solutions/pratyushAdmin),
-deployed to https://ed-astra-solutions.github.io/pratyushAdmin/ — deliberately not
-on the public marketing domain. It talks to the same EC2 backend.
+deployed to https://pratyushadmin.edastra.in — deliberately not on the public
+marketing domain. It talks to the same EC2 backend.
 
 ## Editing content
 
@@ -87,6 +87,11 @@ tie the JSON back to the markup:
 | `data-cms-list="fit.yesItems"` | `<ul>` is filled with one `<li>` per array item |
 | `data-cms-href` / `-src` / `-content` | that attribute is replaced |
 | `<!-- PL:FAQ:START --> … <!-- PL:FAQ:END -->` | region rendered from a collection array |
+
+Every card in the results section ("Proof over promises") opens an expanded
+view — full photo, result badge and the whole story, with arrow-key paging.
+A transformation can carry a `video` instead: the card gets a play badge and
+the expanded view plays the clip. Both are set per client in the console.
 
 To make a new piece of copy editable: add `data-cms="group.key"` to the element,
 run `npm run extract` (which reads the current markup back into `site.json`), and

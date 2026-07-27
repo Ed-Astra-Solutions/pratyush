@@ -58,13 +58,18 @@ ssh ubuntu@<elastic-ip> 'sudo bash /tmp/backend/deploy/bootstrap.sh'
 `bootstrap.sh` installs Node 20 + nginx, creates the `plapi` service user,
 installs the app to `/opt/pl-admin-api`, and registers the systemd unit.
 
+The service listens on **port 3005**, bound to the instance only — nginx
+terminates TLS on 443 and proxies to it. Do **not** open 3005 in the security
+group; nothing outside the box should reach it directly. To move it, set `PORT`
+in `.env` and change `proxy_pass` in `deploy/nginx.conf` to match.
+
 ## Configure
 
 ```bash
 sudo -u plapi npm --prefix /opt/pl-admin-api run hash -- 'a-long-admin-password'
 sudo nano /opt/pl-admin-api/.env      # see .env.example for every field
 sudo systemctl restart pl-admin-api
-curl -s localhost:8080/health
+curl -s localhost:3005/health
 ```
 
 The GitHub token should be a **fine-grained PAT** scoped to
@@ -102,7 +107,8 @@ if you are experimenting.
 
 ## Notes on exposure
 
-The console lives at a public URL (`/admin` on the Pages site) and is
+The console lives at a public URL
+([pratyushAdmin](https://ed-astra-solutions.github.io/pratyushAdmin/)) and is
 `noindex`/`Disallow`ed, but that is obscurity, not security — the password check
 is the actual gate. Use a long password, and if you want a second layer, restrict
 the nginx server block to known source IPs.

@@ -23,7 +23,8 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const FRONTEND = join(ROOT, 'frontend');
-const CONTENT = join(FRONTEND, 'content', 'site.json');
+// PL_CONTENT lets a test build from a fixture without touching the real file.
+const CONTENT = process.env.PL_CONTENT || join(FRONTEND, 'content', 'site.json');
 const PAGES = ['index.html', 'blog/index.html', 'apply/index.html'];
 
 const VOID_TAGS = new Set(['meta', 'img', 'br', 'hr', 'input', 'link', 'source']);
@@ -82,6 +83,8 @@ function getAttr(html, start, attr) {
 }
 
 const escapeAttr = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+/** Copy may carry inline <b>/<em>; data- attributes want the plain text. */
+const stripTags = (s) => String(s ?? '').replace(/<[^>]+>/g, '');
 
 /* ── content access ────────────────────────────────────────────────── */
 
@@ -102,12 +105,33 @@ function set(obj, path, value) {
 const stagger = (i, steps) => (i % steps === 0 ? '' : ` style="transition-delay:.${String(i % steps * 8).padStart(2, '0')}s"`);
 
 const renderers = {
-  TRANSFORMATIONS: (items) => items.map((t, i) => `
-      <figure class="tf-card rv"${stagger(i, 3)}>
+  /* Each card is a button that opens the lightbox. The expanded view is
+     built from these data- attributes, so no second copy of the content
+     is emitted into the page. */
+  TRANSFORMATIONS: (items) => items.map((t, i) => {
+    const data = [
+      `data-name="${escapeAttr(t.name)}"`,
+      `data-stat="${escapeAttr(t.stat)}"`,
+      `data-story="${escapeAttr(stripTags(t.story))}"`,
+      t.full ? `data-full="${escapeAttr(t.full)}"` : '',
+      t.video ? `data-video="${escapeAttr(t.video)}"` : '',
+      t.video ? `data-video-type="${escapeAttr(t.videoType || 'embed')}"` : '',
+      t.video && t.videoWide ? 'data-video-wide="1"' : '',
+      t.video && t.poster ? `data-poster="${escapeAttr(t.poster)}"` : '',
+    ].filter(Boolean).join(' ');
+    const badge = t.video
+      ? '<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M6 3.5l11 6.5-11 6.5z"/></svg>'
+      : '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="M13.5 13.5L18 18M9 6.5v5M6.5 9h5"/></svg>';
+    // A <figure> with role="button": a real <button> cannot legally contain
+    // figure/figcaption, and this keeps the markup valid and keyboard-operable.
+    return `
+      <figure class="tf-card rv${t.video ? ' has-video' : ''}"${stagger(i, 3)} role="button" tabindex="0" ${data} aria-label="${escapeAttr(`${t.name} — ${t.stat}. Open full ${t.video ? 'video' : 'photo'}`)}">
         <figure><img src="${escapeAttr(t.image)}" alt="${escapeAttr(t.alt)}" title="${escapeAttr(t.title)}" loading="lazy"></figure>
+        <span class="zoom">${badge}</span>
         <figcaption><b>${t.name}</b><span>${t.stat}</span></figcaption>
         <p class="tf-story">${t.story}</p>
-      </figure>`).join('') + '\n      ',
+      </figure>`;
+  }).join('') + '\n      ',
 
   VIDEOS: (items) => (items.length ? items.map((v, i) => {
     const media = v.type === 'file'

@@ -17,7 +17,7 @@ import { validate, stamp } from './content.js';
 import { Submissions, STATUSES } from './submissions.js';
 
 const {
-  PORT = 8080,
+  PORT = 3005,
   JWT_SECRET,
   ADMIN_PASSWORD_HASH,
   ADMIN_ORIGINS = '',

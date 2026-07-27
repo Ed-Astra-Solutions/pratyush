@@ -284,6 +284,71 @@ header:not(.solid) .brand{text-shadow:0 1px 3px rgba(0,0,0,.9),0 2px 12px rgba(0
 @media(max-width:980px){.tf-grid{grid-template-columns:1fr}.tf-stats{flex-wrap:wrap}
   .tf-stats div{flex:1 1 50%;border-bottom:1px solid var(--line)}.transf{padding:90px 0}}
 
+/* ── result cards open a full view ─────────────────────────────
+WP: Elementor Lightbox on the gallery widget. Here the whole card
+is the trigger, so the caption and story are clickable too. */
+.tf-card{cursor:pointer;text-align:left;width:100%;font:inherit;color:inherit;
+  transition:border-color .4s,transform .5s cubic-bezier(.16,.84,.28,1)}
+.tf-card:hover{border-color:#3a3a44;transform:translateY(-3px)}
+.tf-card:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+.tf-card .zoom{position:absolute;top:14px;right:14px;width:34px;height:34px;display:grid;
+  place-items:center;background:rgba(11,11,13,.72);border:1px solid var(--line);
+  backdrop-filter:blur(6px);color:var(--bone);opacity:0;transform:scale(.85);
+  transition:.38s cubic-bezier(.16,.84,.28,1);pointer-events:none}
+.tf-card:hover .zoom,.tf-card:focus-visible .zoom{opacity:1;transform:none}
+.tf-card .zoom svg{width:15px;height:15px}
+/* a result that carries a clip gets a play badge instead */
+.tf-card.has-video .zoom{opacity:1;transform:none;background:var(--yellow);color:#0B0B0D;border-color:var(--yellow)}
+.tf-card.has-video:hover .zoom{transform:scale(1.08)}
+
+/* ═══ LIGHTBOX ═══ */
+.lb{position:fixed;inset:0;z-index:200;display:none;place-items:center;padding:40px 24px}
+.lb.open{display:grid}
+.lb-veil{position:absolute;inset:0;background:rgba(6,6,8,.9);backdrop-filter:blur(10px);
+  opacity:0;transition:opacity .4s}
+.lb.in .lb-veil{opacity:1}
+.lb-box{position:relative;width:min(1080px,100%);max-height:calc(100vh - 80px);
+  background:var(--panel);border:1px solid var(--line);display:grid;
+  grid-template-columns:1.15fr .85fr;overflow:hidden;
+  opacity:0;transform:translateY(24px) scale(.98);transition:.5s cubic-bezier(.16,.84,.28,1)}
+.lb.in .lb-box{opacity:1;transform:none}
+.lb-media{background:#0d0d0f;display:flex;align-items:center;justify-content:center;
+  min-height:340px;max-height:calc(100vh - 80px);position:relative}
+.lb-media img{width:100%;height:100%;max-height:calc(100vh - 80px);object-fit:contain}
+.lb-media video,.lb-media iframe{width:100%;aspect-ratio:9/16;max-height:calc(100vh - 80px);
+  border:0;display:block;background:#000}
+.lb-media.wide video,.lb-media.wide iframe{aspect-ratio:16/9}
+.lb-copy{padding:44px 40px;display:flex;flex-direction:column;justify-content:center;gap:16px;
+  overflow-y:auto}
+.lb-copy .eyebrow{margin-bottom:4px}
+.lb-name{font-family:var(--display);font-weight:400;font-size:clamp(30px,3.4vw,44px);
+  letter-spacing:.03em;line-height:1}
+.lb-stat{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow)}
+.lb-story{color:#c9c9c4;font-size:15px;line-height:1.7}
+.lb-close{position:absolute;top:12px;right:12px;z-index:3;width:40px;height:40px;display:grid;
+  place-items:center;background:rgba(11,11,13,.7);border:1px solid var(--line);color:var(--bone);
+  cursor:pointer;transition:.3s}
+.lb-close:hover{background:var(--yellow);color:#0B0B0D;border-color:var(--yellow)}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:44px;height:44px;
+  display:grid;place-items:center;background:rgba(11,11,13,.7);border:1px solid var(--line);
+  color:var(--bone);cursor:pointer;transition:.3s}
+.lb-nav:hover{background:var(--yellow);color:#0B0B0D;border-color:var(--yellow)}
+.lb-nav.prev{left:12px} .lb-nav.next{right:12px}
+.lb-count{position:absolute;bottom:14px;left:16px;z-index:3;font-size:11px;letter-spacing:.2em;
+  color:var(--ash);background:rgba(11,11,13,.7);padding:5px 10px;border:1px solid var(--line)}
+@media(max-width:860px){
+  .lb{padding:0}
+  .lb-box{grid-template-columns:1fr;max-height:100vh;height:100vh;overflow-y:auto;border:0}
+  .lb-media{min-height:0;max-height:52vh}
+  .lb-media img{max-height:52vh}
+  .lb-copy{padding:28px 24px 40px}
+  .lb-nav{top:auto;bottom:14px;transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .lb-veil,.lb-box{transition:none}
+  .lb-box{opacity:1;transform:none}.lb.open .lb-veil{opacity:1}
+}
+
 /* ═══ VIDEOS ═══ */
 .videos{padding:130px 0;border-top:1px solid var(--line)}
 .vid-head{margin-bottom:64px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap}
@@ -789,6 +854,32 @@ apply-via-DM flow). -->
   </div>
 </section>
 
+<!-- ═══ LIGHTBOX ═════════════════════════════════════════════════
+WP: Elementor Lightbox. One instance, filled from whichever result
+card was opened. Lives outside the section so nothing clips it. -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Client result" hidden>
+  <div class="lb-veil" data-lb-close></div>
+  <div class="lb-box">
+    <button class="lb-close" type="button" data-lb-close aria-label="Close">
+      <svg viewBox="0 0 20 20" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4l12 12M16 4L4 16"/></svg>
+    </button>
+    <button class="lb-nav prev" type="button" data-lb-step="-1" aria-label="Previous result">
+      <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3L5 10l7 7"/></svg>
+    </button>
+    <button class="lb-nav next" type="button" data-lb-step="1" aria-label="Next result">
+      <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 3l7 7-7 7"/></svg>
+    </button>
+    <div class="lb-media" id="lb-media"></div>
+    <span class="lb-count" id="lb-count"></span>
+    <div class="lb-copy">
+      <p class="eyebrow">Client result</p>
+      <h3 class="lb-name" id="lb-name"></h3>
+      <p class="lb-stat" id="lb-stat"></p>
+      <p class="lb-story" id="lb-story"></p>
+    </div>
+  </div>
+</div>
+
 <!-- ═══ FOOTER ═══════════════════════════════════════════════════
 WP: Elementor footer template. Keep it quiet - one row. -->
 <footer>
@@ -833,6 +924,67 @@ document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
 /* Hide the video section until it actually holds clips */
 (function(){const v=document.getElementById('video-results');
   if(v&&!v.querySelector('.vid-card'))v.style.display='none';})();
+
+/* Results lightbox: any card opens the full image or clip, with
+   keyboard nav. One dialog, refilled per card. */
+(function(){
+  const lb=document.getElementById('lb'); if(!lb) return;
+  const cards=[...document.querySelectorAll('.tf-card')];
+  if(!cards.length) return;
+  const media=document.getElementById('lb-media');
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let i=0, lastFocus=null;
+
+  const esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+
+  function fill(n){
+    i=(n+cards.length)%cards.length;
+    const c=cards[i], d=c.dataset;
+    media.className='lb-media'+(d.videoWide==='1'?' wide':'');
+    if(d.video){
+      media.innerHTML = d.videoType==='file'
+        ? `<video src="${esc(d.video)}" controls autoplay playsinline${d.poster?` poster="${esc(d.poster)}"`:''}></video>`
+        : `<iframe src="${esc(d.video)}" title="${esc(d.name)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+    } else {
+      const img=c.querySelector('img');
+      media.innerHTML=`<img src="${esc(d.full||img.getAttribute('src'))}" alt="${esc(img.getAttribute('alt'))}">`;
+    }
+    document.getElementById('lb-name').textContent=d.name||'';
+    document.getElementById('lb-stat').textContent=d.stat||'';
+    document.getElementById('lb-story').textContent=d.story||'';
+    document.getElementById('lb-count').textContent=`${String(i+1).padStart(2,'0')} / ${String(cards.length).padStart(2,'0')}`;
+  }
+
+  function open(n){
+    lastFocus=document.activeElement;
+    lb.hidden=false; lb.classList.add('open');
+    fill(n);
+    document.body.style.overflow='hidden';
+    requestAnimationFrame(()=>lb.classList.add('in'));
+    lb.querySelector('.lb-close').focus({preventScroll:true});
+  }
+  function close(){
+    lb.classList.remove('in');
+    const done=()=>{lb.classList.remove('open');lb.hidden=true;media.innerHTML='';
+      document.body.style.overflow='';lastFocus&&lastFocus.focus({preventScroll:true})};
+    reduced?done():setTimeout(done,320);
+  }
+
+  cards.forEach((c,n)=>{
+    c.addEventListener('click',()=>open(n));
+    c.addEventListener('keydown',e=>{
+      if(e.key==='Enter'||e.key===' '){e.preventDefault();open(n)}
+    });
+  });
+  lb.querySelectorAll('[data-lb-close]').forEach(el=>el.addEventListener('click',close));
+  lb.querySelectorAll('[data-lb-step]').forEach(el=>el.addEventListener('click',()=>fill(i+ +el.dataset.lbStep)));
+  addEventListener('keydown',e=>{
+    if(lb.hidden) return;
+    if(e.key==='Escape') close();
+    else if(e.key==='ArrowLeft') fill(i-1);
+    else if(e.key==='ArrowRight') fill(i+1);
+  });
+})();
 
 /* FAQ accordion */
 document.querySelectorAll('.faq-q').forEach(q=>q.addEventListener('click',()=>{

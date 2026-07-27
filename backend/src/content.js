@@ -84,7 +84,13 @@ export function validate(content) {
     }
   }
 
-  for (const clip of content.videoClips ?? []) {
+  // Anything that ends up in an iframe src has its host checked, wherever it
+  // came from: the video section, or a clip attached to a result card.
+  const embeds = [
+    ...(content.videoClips ?? []).map((c) => ({ name: c.name, src: c.src, type: c.type })),
+    ...(content.transformations ?? []).filter((t) => t.video).map((t) => ({ name: t.name, src: t.video, type: t.videoType })),
+  ];
+  for (const clip of embeds) {
     if (clip.type === 'file') continue;
     let host;
     try { host = new URL(clip.src).host; } catch { errors.push(`video "${clip.name}": src is not a valid URL`); continue; }
