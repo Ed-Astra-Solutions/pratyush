@@ -221,7 +221,7 @@ header:not(.solid) .brand{text-shadow:0 1px 3px rgba(0,0,0,.9),0 2px 12px rgba(0
 
 /* ═══ PROBLEM ═══ */
 .problem{padding:130px 0}
-.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.problem-grid{display:grid;grid-template-columns:1fr;gap:80px;align-items:start;max-width:900px}
 .problem h2{margin:22px 0 0}
 .pain{border-top:1px solid var(--line);padding:26px 0;display:grid;grid-template-columns:34px 1fr;gap:18px}
 .pain:last-of-type{border-bottom:1px solid var(--line)}
@@ -252,10 +252,8 @@ header:not(.solid) .brand{text-shadow:0 1px 3px rgba(0,0,0,.9),0 2px 12px rgba(0
 .story-pull i{color:var(--yellow);font-style:normal}
 .story-sign{margin-top:30px;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--ash)}
 .story-sign b{color:var(--bone);font-weight:600}
-.story-banner{margin-top:100px;border:1px solid var(--line)}
-.story-banner img{width:100%}
 @media(max-width:900px){.story-grid{grid-template-columns:1fr;gap:44px}
-  .story-figure{position:static;max-width:440px}.story{padding:90px 0}.story-banner{margin-top:64px}}
+  .story-figure{position:static;max-width:440px}.story{padding:90px 0}}
 
 /* ═══ SYSTEM ═══ */
 .system{padding:130px 0;background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -384,7 +382,7 @@ is the trigger, so the caption and story are clickable too. */
 
 /* ═══ FIT ═══ */
 .fit{padding:130px 0}
-.fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:64px}
+.fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
 .fit-col{background:var(--ink);padding:52px 46px}
 .fit-col.no{background:var(--panel)}
 .fit-col h3{font-family:var(--display);font-weight:400;font-size:28px;letter-spacing:.04em;margin-bottom:30px}
@@ -491,11 +489,7 @@ h2.split,.rv h2.split{clip-path:none;transform:none;transition:none}
 
 /* ── scrubbed parallax ─────────────────────────────────────────
 Marked elements drift a fraction of the page's scroll while they are
-on screen. The banner is over-scaled so the drift never exposes an
-edge. WP: Motion Effects → Vertical Scroll. */
-.story-banner{overflow:hidden}
-.story-banner img{transform:scale(1.14);will-change:transform}
-@media (prefers-reduced-motion:reduce){.story-banner img{transform:none}}
+on screen. WP: Motion Effects → Vertical Scroll. */
 
 /* gallery images: wipe in from the left, then the usual hover zoom */
 .tf-card.rv figure img{clip-path:inset(0 100% 0 0)}
@@ -609,79 +603,10 @@ WP: marquee addon, 34s duration, pause on hover optional. -->
   </div>
 </div>
 
-<!-- ═══ PROBLEM ══════════════════════════════════════════════════
-WP: 2-column section, left heading, right = bordered text rows. -->
-<section class="problem">
-  <div class="wrap problem-grid">
-    <div class="rv">
-      <p class="eyebrow" data-cms="problem.eyebrow">The real problem</p>
-      <h2 data-cms="problem.heading">You don't lack willpower. You lack a <em>system</em> that fits your week.</h2>
-      <p class="pivot rv" style="transition-delay:.15s" data-cms="problem.pivot">You already deliver for everyone: your boss, your team, your family. <em>What's missing is a plan built around your actual routine,</em> and someone who keeps you accountable to it.</p>
-    </div>
-    <div>
-      <div class="pain rv"><span class="x">✕</span><p data-cms="problem.pain1"><b>Generic plans ignore your calendar.</b>Templates written for people with two spare hours a day collapse the moment a late meeting, a flight or a family dinner shows up.</p></div>
-      <div class="pain rv" style="transition-delay:.08s"><span class="x">✕</span><p data-cms="problem.pain2"><b>All-or-nothing diets never survive real life.</b>Cut everything out and it works for three weeks, then one weekend undoes it, and the guilt costs more than the calories.</p></div>
-      <div class="pain rv" style="transition-delay:.16s"><span class="x">✕</span><p data-cms="problem.pain3"><b>Nobody is actually checking on you.</b>Without a weekly review and someone who notices when you slip, motivation quietly becomes the plan. Motivation is not a plan.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ STORY - MEET YOUR COACH ══════════════════════════════════
-WP: 2-column section - left sticky Image widget (founder poster),
-right Heading + Text Editor. Full-width banner Image widget below.
-Psychology: the coach's own rebuild is the proof of concept for
-the coaching philosophy. Vulnerability first, authority second. -->
-<section class="story" id="story">
-  <div class="wrap">
-    <div class="story-grid">
-      <figure class="story-figure rv">
-        <img id="pl-story-img" data-cms-src="images.story" src="images/pl-pratyush-founder-poster.jpg" alt="Meet Pratyush - founder and online coach for busy professionals" title="Pratyush - Founder, Pratyush Liftz" loading="lazy">
-        <figcaption><b data-cms="story.captionName">Pratyush</b><span data-cms="story.captionRole">Founder · Team PL</span></figcaption>
-      </figure>
-      <div class="story-copy">
-        <p class="eyebrow rv" data-cms="story.eyebrow">Meet your coach</p>
-        <h2 class="rv" style="transition-delay:.08s" data-cms="story.heading">Coaching built for the life you <em>actually live.</em></h2>
-        <p class="lead rv" style="transition-delay:.14s" data-cms="story.lead">I'm Pratyush. I help working professionals lose fat and build muscle without putting their careers, their travel or their family time on hold.</p>
-        <p class="rv" data-cms="story.p1">Most plans are written for people with two spare hours a day. Real professionals don't have that. They have early meetings, deadlines, client dinners, flights and families. So the plan has to be built around the week you actually have, not the one a template assumes.</p>
-        <p class="rv" data-cms="story.p2"><b>That's the whole idea: a system that fits your life, not the other way around.</b></p>
-        <p class="rv" data-cms="story.p3">Personalised training around your schedule and equipment. Flexible nutrition that survives travel and eating out. Weekly check-ins, form reviews and direct access, so small problems get fixed before they turn into plateaus, and so you actually understand the deeper concepts, not just follow orders.</p>
-        <div class="story-pull rv" data-cms="story.pull">Your schedule isn't the obstacle. <i>It's the thing we build the plan around.</i></div>
-        <p class="rv" data-cms="story.p4">Every client works with me for 3, 6 or 12 months and finishes with the habits, mindset and a maintenance plan to keep the results for good. My job isn't to hand you a 12-week fix, it's to make sure you never need one again.</p>
-        <p class="story-sign rv" data-cms="story.sign"><b>Pratyush</b> · Founder, Pratyush Liftz</p>
-      </div>
-    </div>
-    <div class="story-banner rv">
-      <img id="pl-team-banner" data-par="-0.06" data-par-base="scale(1.14)" data-cms-src="images.banner" src="images/pl-team-banner-welcome.jpg" alt="Welcome to Team PL - discipline, consistency, transformation. Science-based training, flexible nutrition, weekly accountability." title="Welcome to Team PL" loading="lazy">
-    </div>
-  </div>
-</section>
-
-<!-- ═══ SYSTEM ═══════════════════════════════════════════════════
-WP: 3×2 grid of Elementor icon-box widgets on a 1px-gap grid. -->
-<section class="system" id="system">
-  <div class="wrap">
-    <div class="system-head">
-      <div class="rv">
-        <p class="eyebrow" data-cms="system.eyebrow">What every client gets</p>
-        <h2 data-cms="system.heading">Everything is built for you.<br>Nothing is templated.</h2>
-      </div>
-      <p class="sub rv" style="transition-delay:.1s" data-cms="system.sub">One coach. One system. Every part of it adjusts to your week, not the other way around, whether you commit for 3, 6 or 12 months.</p>
-    </div>
-    <div class="sys-grid">
-      <div class="sys-card rv"><svg class="glyph" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 20h6M28 20h6M12 12v16M28 12v16M16 16v8M24 16v8M16 20h8"/></svg><h3 data-cms="system.card1.title">Personalized Training Schedule</h3><p data-cms="system.card1.body">Built around your equipment, experience and the hours you actually have, whether that's a commercial gym at 6 a.m. or forty-five minutes in a hotel gym between meetings.</p></div>
-      <div class="sys-card rv" style="transition-delay:.06s"><svg class="glyph" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="20" cy="20" r="13"/><path d="M20 7v13l8 5"/></svg><h3 data-cms="system.card2.title">Nutrition That Fits Your Life</h3><p data-cms="system.card2.body">Structured targets around the foods you actually eat: client dinners, weekends and travel included. No meal-prep servitude, no banned lists.</p></div>
-      <div class="sys-card rv" style="transition-delay:.12s"><svg class="glyph" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 6c-6 5-12 5-12 5s-1 14 12 23c13-9 12-23 12-23s-6 0-12-5z"/><path d="M20 6v28"/></svg><h3 data-cms="system.card3.title">Travel &amp; Holiday Management</h3><p data-cms="system.card3.body">Flights, hotels, work trips and holidays planned for in advance, so momentum survives your calendar instead of dying on it.</p></div>
-      <div class="sys-card rv" style="transition-delay:.06s"><svg class="glyph" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 12h24v16H20l-6 5v-5H8z"/><path d="M14 18h12M14 22h8"/></svg><h3 data-cms="system.card4.title">Check-in Calls &amp; Direct Chat</h3><p data-cms="system.card4.body">One-on-one calls plus direct chat access to Pratyush, not a portal, not an assistant. Questions answered within the day.</p></div>
-      <div class="sys-card rv" style="transition-delay:.12s"><svg class="glyph" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 31l8-9 6 5 10-13"/><path d="M25 14h6v6"/></svg><h3 data-cms="system.card5.title">Full Metrics Tracking</h3><p data-cms="system.card5.body">Bodyweight, performance, sleep, stress and recovery in one place. We read the trend, and the plan updates the moment the data asks for it.</p></div>
-      <div class="sys-card rv" style="transition-delay:.18s"><svg class="glyph" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="20" cy="20" r="3"/><circle cx="20" cy="20" r="8.5"/><circle cx="20" cy="20" r="14"/></svg><h3 data-cms="system.card6.title">Form Reviews &amp; Mindset</h3><p data-cms="system.card6.body">Weekly exercise videos with form feedback, plus the habits, adherence and mindset systems that make results actually stick.</p></div>
-    </div>
-  </div>
-</section>
-
 <!-- ═══ TRANSFORMATIONS ══════════════════════════════════════════
 WP: gallery grid (Image widgets) + Elementor Counter widgets.
 Upload each image with the Title/Alt/Caption/Description from
-images/image-metadata.md. Proof placed AFTER the offer inventory. -->
+images/image-metadata.md. Proof placed first, straight after the hero. -->
 <section class="transf" id="results">
   <div class="wrap">
     <div class="tf-head">
@@ -737,6 +662,67 @@ images/image-metadata.md. Proof placed AFTER the offer inventory. -->
   </div>
 </section>
 
+<!-- ═══ PROBLEM ══════════════════════════════════════════════════
+WP: 2-column section, left heading, right = bordered text rows. -->
+<section class="problem">
+  <div class="wrap problem-grid">
+    <div>
+      <div class="pain rv"><span class="x">✕</span><p data-cms="problem.pain1"><b>Generic plans ignore your calendar.</b>Templates written for people with two spare hours a day collapse the moment a late meeting, a flight or a family dinner shows up.</p></div>
+      <div class="pain rv" style="transition-delay:.08s"><span class="x">✕</span><p data-cms="problem.pain2"><b>All-or-nothing diets never survive real life.</b>Cut everything out and it works for three weeks, then one weekend undoes it, and the guilt costs more than the calories.</p></div>
+      <div class="pain rv" style="transition-delay:.16s"><span class="x">✕</span><p data-cms="problem.pain3"><b>Nobody is actually checking on you.</b>Without a weekly review and someone who notices when you slip, motivation quietly becomes the plan. Motivation is not a plan.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STORY - MEET YOUR COACH ══════════════════════════════════
+WP: 2-column section - left sticky Image widget (founder poster),
+right Heading + Text Editor.
+Psychology: the coach's own rebuild is the proof of concept for
+the coaching philosophy. Vulnerability first, authority second. -->
+<section class="story" id="story">
+  <div class="wrap">
+    <div class="story-grid">
+      <figure class="story-figure rv">
+        <img id="pl-story-img" data-cms-src="images.story" src="images/pl-pratyush-founder-poster.jpg" alt="Meet Pratyush - founder and online coach for busy professionals" title="Pratyush - Founder, Pratyush Liftz" loading="lazy">
+        <figcaption><b data-cms="story.captionName">Pratyush</b><span data-cms="story.captionRole">Founder · Team PL</span></figcaption>
+      </figure>
+      <div class="story-copy">
+        <p class="eyebrow rv" data-cms="story.eyebrow">Meet your coach</p>
+        <h2 class="rv" style="transition-delay:.08s" data-cms="story.heading">Coaching built for the life you <em>actually live.</em></h2>
+        <p class="lead rv" style="transition-delay:.14s" data-cms="story.lead">I'm Pratyush. I help working professionals lose fat and build muscle without putting their careers, their travel or their family time on hold.</p>
+        <p class="rv" data-cms="story.p1">Most plans are written for people with two spare hours a day. Real professionals don't have that. They have early meetings, deadlines, client dinners, flights and families. So the plan has to be built around the week you actually have, not the one a template assumes.</p>
+        <p class="rv" data-cms="story.p2"><b>That's the whole idea: a system that fits your life, not the other way around.</b></p>
+        <p class="rv" data-cms="story.p3">Personalised training around your schedule and equipment. Flexible nutrition that survives travel and eating out. Weekly check-ins, form reviews and direct access, so small problems get fixed before they turn into plateaus, and so you actually understand the deeper concepts, not just follow orders.</p>
+        <div class="story-pull rv" data-cms="story.pull">Your schedule isn't the obstacle. <i>It's the thing we build the plan around.</i></div>
+        <p class="rv" data-cms="story.p4">Every client works with me for 3, 6 or 12 months and finishes with the habits, mindset and a maintenance plan to keep the results for good. My job isn't to hand you a 12-week fix, it's to make sure you never need one again.</p>
+        <p class="story-sign rv" data-cms="story.sign"><b>Pratyush</b> · Founder, Pratyush Liftz</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SYSTEM ═══════════════════════════════════════════════════
+WP: 3×2 grid of Elementor icon-box widgets on a 1px-gap grid. -->
+<section class="system" id="system">
+  <div class="wrap">
+    <div class="system-head">
+      <div class="rv">
+        <p class="eyebrow" data-cms="system.eyebrow">What every client gets</p>
+        <h2 data-cms="system.heading">Everything is built for you.<br>Nothing is templated.</h2>
+      </div>
+      <p class="sub rv" style="transition-delay:.1s" data-cms="system.sub">One coach. One system. Every part of it adjusts to your week, not the other way around, whether you commit for 3, 6 or 12 months.</p>
+    </div>
+    <div class="sys-grid">
+      <div class="sys-card rv"><svg class="glyph" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 20h6M28 20h6M12 12v16M28 12v16M16 16v8M24 16v8M16 20h8"/></svg><h3 data-cms="system.card1.title">Personalized Training Schedule</h3><p data-cms="system.card1.body">Built around your equipment, experience and the hours you actually have, whether that's a commercial gym at 6 a.m. or forty-five minutes in a hotel gym between meetings.</p></div>
+      <div class="sys-card rv" style="transition-delay:.06s"><svg class="glyph" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="20" cy="20" r="13"/><path d="M20 7v13l8 5"/></svg><h3 data-cms="system.card2.title">Nutrition That Fits Your Life</h3><p data-cms="system.card2.body">Structured targets around the foods you actually eat: client dinners, weekends and travel included. No meal-prep servitude, no banned lists.</p></div>
+      <div class="sys-card rv" style="transition-delay:.12s"><svg class="glyph" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 6c-6 5-12 5-12 5s-1 14 12 23c13-9 12-23 12-23s-6 0-12-5z"/><path d="M20 6v28"/></svg><h3 data-cms="system.card3.title">Travel &amp; Holiday Management</h3><p data-cms="system.card3.body">Flights, hotels, work trips and holidays planned for in advance, so momentum survives your calendar instead of dying on it.</p></div>
+      <div class="sys-card rv" style="transition-delay:.06s"><svg class="glyph" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 12h24v16H20l-6 5v-5H8z"/><path d="M14 18h12M14 22h8"/></svg><h3 data-cms="system.card4.title">Check-in Calls &amp; Direct Chat</h3><p data-cms="system.card4.body">One-on-one calls plus direct chat access to Pratyush, not a portal, not an assistant. Questions answered within the day.</p></div>
+      <div class="sys-card rv" style="transition-delay:.12s"><svg class="glyph" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 31l8-9 6 5 10-13"/><path d="M25 14h6v6"/></svg><h3 data-cms="system.card5.title">Full Metrics Tracking</h3><p data-cms="system.card5.body">Bodyweight, performance, sleep, stress and recovery in one place. We read the trend, and the plan updates the moment the data asks for it.</p></div>
+      <div class="sys-card rv" style="transition-delay:.18s"><svg class="glyph" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="20" cy="20" r="3"/><circle cx="20" cy="20" r="8.5"/><circle cx="20" cy="20" r="14"/></svg><h3 data-cms="system.card6.title">Form Reviews &amp; Mindset</h3><p data-cms="system.card6.body">Weekly exercise videos with form feedback, plus the habits, adherence and mindset systems that make results actually stick.</p></div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ VIDEO RESULTS ════════════════════════════════════════════
 Client video testimonials / transformation reels. The section
 auto-hides while it holds no cards. -->
@@ -776,10 +762,6 @@ WP: 3 inner sections with 3 columns each (number / title / text). -->
 WP: 2-column section, icon lists. Qualification framing. -->
 <section class="fit">
   <div class="wrap">
-    <div class="rv">
-      <p class="eyebrow" data-cms="fit.eyebrow">A deliberately small roster</p>
-      <h2 data-cms="fit.heading">This is coaching, not content.<br>It has to <em>fit.</em></h2>
-    </div>
     <div class="fit-grid">
       <div class="fit-col yes rv">
         <h3 data-cms="fit.yesTitle">This works if <em>you</em>:</h3>

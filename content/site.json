@@ -17,9 +17,6 @@
     "text": "Fat Loss <i>✦</i> Muscle Gain <i>✦</i> Busy Professionals <i>✦</i> Custom Training <i>✦</i> Flexible Nutrition <i>✦</i> Travel-Proof Plans <i>✦</i> Weekly Check-ins <i>✦</i> Direct Accountability <i>✦</i>"
   },
   "problem": {
-    "eyebrow": "The real problem",
-    "heading": "You don't lack willpower. You lack a <em>system</em> that fits your week.",
-    "pivot": "You already deliver for everyone: your boss, your team, your family. <em>What's missing is a plan built around your actual routine,</em> and someone who keeps you accountable to it.",
     "pain1": "<b>Generic plans ignore your calendar.</b>Templates written for people with two spare hours a day collapse the moment a late meeting, a flight or a family dinner shows up.",
     "pain2": "<b>All-or-nothing diets never survive real life.</b>Cut everything out and it works for three weeks, then one weekend undoes it, and the guilt costs more than the calories.",
     "pain3": "<b>Nobody is actually checking on you.</b>Without a weekly review and someone who notices when you slip, motivation quietly becomes the plan. Motivation is not a plan."
@@ -89,8 +86,6 @@
     }
   },
   "fit": {
-    "eyebrow": "A deliberately small roster",
-    "heading": "This is coaching, not content.<br>It has to <em>fit.</em>",
     "yesTitle": "This works if <em>you</em>:",
     "noTitle": "It isn't for you if:",
     "yesItems": [
@@ -155,8 +150,7 @@
   },
   "images": {
     "hero": "images/pl-pratyush-coach-training.jpg",
-    "story": "images/pl-pratyush-founder-poster.jpg",
-    "banner": "images/pl-team-banner-welcome.jpg"
+    "story": "images/pl-pratyush-founder-poster.jpg"
   },
   "blog": {
     "metaTitle": "Blog - Pratyush Liftz | Fat Loss &amp; Training for Busy Professionals",
