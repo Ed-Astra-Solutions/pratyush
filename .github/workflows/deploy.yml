@@ -37,7 +37,7 @@ jobs:
       # The application form is the site's only conversion path, so a content
       # change that breaks it must not reach production.
       - name: Install test dependencies
-        run: npm ci --no-audit --no-fund && npm --prefix backend ci --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       - name: Test the application form
         run: npm test

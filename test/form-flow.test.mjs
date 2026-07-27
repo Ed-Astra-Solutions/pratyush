@@ -3,84 +3,74 @@
  *
  *   npm test
  *
- * Builds the site, starts the backend against a throwaway data directory,
- * drives the real built page in jsdom, and checks that a finished
- * application arrives in the store with the right shape. The form is how
- * every lead reaches the business, so it gets an actual test.
+ * Builds the site, drives the real built page in jsdom, and checks that a
+ * finished application produces the right request. The form is how every lead
+ * reaches the business, so it gets an actual test.
+ *
+ * The server lives in its own repo now (Ed-Astra-Solutions/pratyushServer),
+ * so the boundary is the request: this asserts exactly what the page sends,
+ * and the server's own suite asserts what it does with it.
  */
 import { JSDOM } from 'jsdom';
-import { spawn, execFileSync } from 'node:child_process';
-import { mkdtempSync, readFileSync, rmSync } from 'node:fs';
-import { tmpdir } from 'node:os';
+import { execFileSync } from 'node:child_process';
+import { readFileSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const PORT = 8123;
-const API = `http://localhost:${PORT}`;
+const API = 'https://api.test.invalid';
 const PAGE = join(ROOT, 'dist', 'apply', 'index.html');
 
 let pass = 0, fail = 0;
 const ok = (cond, msg) => { cond ? (pass++, console.log('  ✓', msg)) : (fail++, console.log('  ✗', msg)); };
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-/* ── harness ───────────────────────────────────────────────────────── */
-
-const dataDir = mkdtempSync(join(tmpdir(), 'pl-test-'));
-const PASSWORD = 'test-password-1234';
-const hash = execFileSync('node', [join(ROOT, 'backend/scripts/hash-password.mjs'), PASSWORD], { encoding: 'utf8' }).trim();
-
 console.log('building…');
 execFileSync('node', [join(ROOT, 'build/build.mjs'), 'build'], { stdio: 'ignore' });
 
-const server = spawn('node', [join(ROOT, 'backend/src/server.js')], {
-  env: {
-    ...process.env,
-    PORT: String(PORT), DATA_DIR: dataDir,
-    JWT_SECRET: 'test-secret', ADMIN_PASSWORD_HASH: hash,
-    GITHUB_TOKEN: 'unused-in-this-test', GITHUB_OWNER: 'o', GITHUB_REPO: 'r',
-    MIN_FILL_SECONDS: '0', NOTIFY_WEBHOOK: '',
-  },
-  stdio: ['ignore', 'ignore', 'inherit'],
-});
-
-async function waitForServer() {
-  for (let i = 0; i < 50; i++) {
-    try { if ((await fetch(`${API}/health`)).ok) return; } catch { /* not up yet */ }
-    await sleep(100);
-  }
-  throw new Error('backend did not start');
-}
-
-function finish(code) {
-  server.kill();
-  rmSync(dataDir, { recursive: true, force: true });
-  process.exit(code);
-}
-
 /* ── page driver ───────────────────────────────────────────────────── */
 
-async function boot() {
+/** Requests the page made, most recent last. Reset on every boot. */
+let sent = [];
+/** The requests from the completed-application run, kept for the assertions. */
+let submitted = [];
+
+/**
+ * @param reduced  Boot as a visitor who asked for reduced motion. The page
+ *   then advances synchronously, so the flow can be driven in milliseconds
+ *   rather than waiting out every transition. The last case below runs with
+ *   the real timings, to prove the animated path advances too.
+ */
+async function boot(reduced = true) {
+  sent = [];
   const dom = new JSDOM(readFileSync(PAGE, 'utf8'), {
     runScripts: 'dangerously',
     pretendToBeVisual: true,
     url: 'https://pratyushfitness.edastra.in/apply/',
     beforeParse(w) {
       // jsdom ships neither of these; every real browser has them.
-      w.matchMedia = () => ({ matches: false, addEventListener() {}, removeEventListener() {} });
-      w.fetch = (url, opts) => fetch(url, opts);
-      w.PL_FORM_API = API;   // point the page at the test backend
+      w.matchMedia = (q) => ({ matches: reduced && /reduced-motion/.test(q), addEventListener() {}, removeEventListener() {} });
+      // Stand in for the backend and record what the page sends.
+      w.fetch = async (url, opts = {}) => {
+        sent.push({ url, method: opts.method, body: JSON.parse(opts.body || '{}'), headers: opts.headers });
+        return { ok: true, status: 201, text: async () => '{"ok":true,"id":"test"}', json: async () => ({ ok: true, id: 'test' }) };
+      };
+      w.PL_FORM_API = API;
     },
   });
-  await sleep(150);
+  await sleep(120);
   return dom.window;
 }
+
+// Reduced-motion boots settle at once; the animated one needs the
+// auto-advance delay (340ms) plus the screen transition (340ms).
+let WAIT = 60;
 
 const live = (w) => w.document.querySelector('.screen.live')?.dataset.screen;
 const one = (w, sel) => w.document.querySelector(`.screen.live ${sel}`);
 const all = (w, sel) => [...w.document.querySelectorAll(`.screen.live ${sel}`)];
 // Long enough to cover the auto-advance delay plus the screen transition.
-const click = async (w, el) => { el.dispatchEvent(new w.MouseEvent('click', { bubbles: true })); await sleep(820); };
+const click = async (w, el) => { el.dispatchEvent(new w.MouseEvent('click', { bubbles: true })); await sleep(WAIT); };
 
 /** Answer everything up to (but not including) the investment question. */
 async function fillToInvest(w) {
@@ -99,8 +89,6 @@ async function fillToInvest(w) {
 }
 
 /* ── tests ─────────────────────────────────────────────────────────── */
-
-await waitForServer();
 
 console.log('\nnavigation');
 {
@@ -184,29 +172,43 @@ console.log('\nsubmission');
   set('email', 'jsdom@example.com');
   set('phone', '+91 90000 00000');
   await click(w, one(w, '.next'));
-  await sleep(600);
+  await sleep(200);
   ok(live(w) === 'success', 'a complete application lands on the success screen');
+  submitted = sent.slice();       // captured here; later boots reset `sent`
   w.close();
 }
 
-console.log('\nstored record');
+console.log('\nwith the animation running');
 {
-  const login = await (await fetch(`${API}/api/login`, {
-    method: 'POST', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ password: PASSWORD }),
-  })).json();
-  const { submissions, counts } = await (await fetch(`${API}/api/submissions`, {
-    headers: { Authorization: `Bearer ${login.token}` },
-  })).json();
+  WAIT = 820;
+  const w = await boot(false);
+  await click(w, one(w, '.start'));
+  ok(live(w) === 'source', 'the animated page enters the first question');
+  await click(w, all(w, '.opt')[0]);
+  ok(live(w) === 'age', 'a single-select still auto-advances once the transition finishes');
+  await click(w, one(w, '.back'));
+  ok(live(w) === 'source', 'and Back still steps to the previous screen');
+  w.close();
+  WAIT = 60;
+}
 
-  ok(counts.new === 1, `exactly one new application is stored (got ${counts.new})`);
-  const a = submissions[0].answers;
-  ok(a.source === 'Instagram', 'the single-select answer is stored');
-  ok(Array.isArray(a.blockers) && a.blockers.length === 1, 'the multi-select is stored as an array');
-  ok(a.stats === '84 kgs, 178cm', 'the text answer is stored');
-  ok(a.contact.email === 'jsdom@example.com', 'the contact block is stored');
-  ok(submissions[0].meta.page.endsWith('/apply/'), 'the source page is recorded');
+console.log('\nthe request it sends');
+{
+  ok(submitted.length === 1, `exactly one request is made (${submitted.length})`);
+  const req = submitted[0];
+  ok(req.url === `${API}/api/apply`, 'it posts to /api/apply on the configured backend');
+  ok(req.method === 'POST', 'it is a POST');
+
+  const a = req.body.answers;
+  ok(a.source === 'Instagram', 'the single-select answer is sent');
+  ok(Array.isArray(a.blockers) && a.blockers.length === 1, 'the multi-select is sent as an array');
+  ok(a.stats === '84 kgs, 178cm', 'the text answer is sent');
+  ok(a.contact.email === 'jsdom@example.com', 'the contact block is sent');
+  ok(a.contact.phone === '+91 90000 00000', 'optional contact fields are included');
+  ok(req.body.meta.page.endsWith('/apply/'), 'the source page is reported');
+  ok(typeof req.body.meta.elapsedMs === 'number', 'time-to-complete is reported, for the spam check');
+  ok(req.body.website === '', 'the honeypot is sent empty');
 }
 
 console.log(`\n${pass} passed, ${fail} failed\n`);
-finish(fail ? 1 : 0);
+process.exit(fail ? 1 : 0);

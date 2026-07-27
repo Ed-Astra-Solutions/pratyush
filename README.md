@@ -11,7 +11,6 @@ frontend/          the public site — hand-written HTML/CSS, no framework
   content/site.json  every editable string, list, image path and form question
   images/            all site imagery
   CNAME              custom domain for GitHub Pages
-backend/           the API that runs on EC2: commits content, receives applications
 build/build.mjs    injects content/site.json into the HTML → dist/
 test/              end-to-end test of the application form (npm test)
 .github/workflows/ deploy.yml — tests, builds and publishes to GitHub Pages
@@ -67,14 +66,18 @@ entrance animations with stagger, blur/translate step transitions, a mouse-track
 parallax backdrop and an animated progress bar — all of which collapse under
 `prefers-reduced-motion`.
 
-`npm test` drives the real built page in jsdom against a real backend and
-asserts the whole path, including the disqualify branch and the stored record.
-CI runs it before every deploy.
+`npm test` drives the real built page in jsdom and asserts the whole path —
+the disqualify branch included — down to the exact request it posts. What the
+server does with that request is covered by the server repo's own suite. CI
+runs it before every deploy.
 
-The admin console lives in its own repository,
-[Ed-Astra-Solutions/pratyushAdmin](https://github.com/Ed-Astra-Solutions/pratyushAdmin),
-deployed to https://pratyushadmin.edastra.in — deliberately not on the public
-marketing domain. It talks to the same EC2 backend.
+## The three repos
+
+| | |
+| --- | --- |
+| **pratyush** | this — the public site and the application form |
+| [pratyushAdmin](https://github.com/Ed-Astra-Solutions/pratyushAdmin) | the content console → `pratyushadmin.edastra.in`, deliberately not on the marketing domain |
+| [pratyushServer](https://github.com/Ed-Astra-Solutions/pratyushServer) | the API both talk to, on EC2 (private) |
 
 ## Editing content
 
@@ -130,12 +133,13 @@ npm install            # jsdom, for the form test
 npm run build          # frontend/ + content → dist/
 npm run preview        # build, then serve dist/ on http://localhost:4173
 npm run extract        # markup → content/site.json (after adding new data-cms hooks)
-npm test               # end-to-end application form test (starts its own backend)
+npm test               # motion, results lightbox and application form
 ```
 
-For the console, run the backend locally (see `backend/README.md`) and serve the
-[pratyushAdmin](https://github.com/Ed-Astra-Solutions/pratyushAdmin) checkout —
-its `config.js` points at `localhost:8080` by default.
+For the console, run the server locally (see
+[pratyushServer](https://github.com/Ed-Astra-Solutions/pratyushServer)) and
+serve the [pratyushAdmin](https://github.com/Ed-Astra-Solutions/pratyushAdmin)
+checkout.
 
 ## One-time setup
 
@@ -145,7 +149,9 @@ its `config.js` points at `localhost:8080` by default.
 2. **Repository variable.** Settings → Secrets and variables → Actions → Variables →
    `PL_API_BASE` = `https://api.pratyushfitness.edastra.in` (the EC2 endpoint). The
    build bakes it into the application form.
-3. **Backend.** Follow `backend/README.md` to bring up the EC2 instance.
+3. **Server.** Follow the README in
+   [pratyushServer](https://github.com/Ed-Astra-Solutions/pratyushServer) to
+   bring up the EC2 instance.
 4. Push to `main` and confirm the workflow deploys.
 
 > **The deploy workflow cannot run yet.** Custom GitHub Actions workflows are
