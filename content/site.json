@@ -163,7 +163,7 @@
     "eyebrow": "The Pratyush Liftz journal",
     "heading": "Train smart.<br>Stay <em>consistent.</em>",
     "lead": "Practical, no-fluff articles on losing fat, building muscle and staying consistent around a full, busy schedule.",
-    "soon": "More articles coming soon. Follow <a href=\"https://www.instagram.com/pratyushliftz/\" target=\"_blank\" rel=\"noopener\" style=\"color:var(--yellow)\">@pratyushliftz</a> for daily tips.",
+    "soon": "More articles coming soon. Follow <a href=\"https://www.instagram.com/pratyushliftz/\" target=\"_blank\" rel=\"noopener\">@pratyushliftz</a> for daily tips.",
     "copyright": "© 2026 Pratyush Liftz. Lose fat while building muscle, even with your busy routine."
   },
   "transformations": [
@@ -266,27 +266,51 @@
   ],
   "posts": [
     {
-      "tag": "Nutrition",
+      "slug": "eat-out-and-still-lose-fat",
       "title": "How to eat out 4 nights a week and still lose fat",
+      "tag": "Nutrition",
+      "date": "",
+      "status": "published",
       "excerpt": "Flexible targets, not banned lists. The exact framework busy professionals use to hit their goals without skipping client dinners.",
+      "cover": "",
+      "coverAlt": "",
+      "body": "",
       "url": ""
     },
     {
-      "tag": "Training",
+      "slug": "three-day-plan-for-travellers",
       "title": "The 3-day plan for people who travel constantly",
+      "tag": "Training",
+      "date": "",
+      "status": "published",
       "excerpt": "A minimalist split built for hotel gyms and unpredictable weeks, so momentum survives your calendar.",
+      "cover": "",
+      "coverAlt": "",
+      "body": "",
       "url": ""
     },
     {
-      "tag": "Mindset",
+      "slug": "consistency-beats-intensity",
       "title": "Why consistency beats intensity every single time",
+      "tag": "Mindset",
+      "date": "",
+      "status": "published",
       "excerpt": "The uncomfortable truth about transformation: the boring, repeatable stuff is what actually changes your body.",
+      "cover": "",
+      "coverAlt": "",
+      "body": "",
       "url": ""
     },
     {
-      "tag": "Fat loss",
+      "slug": "fat-loss-on-night-shifts",
       "title": "Fat loss on night shifts and long hours",
+      "tag": "Fat loss",
+      "date": "",
+      "status": "published",
       "excerpt": "How to structure food, sleep and training when your schedule refuses to cooperate.",
+      "cover": "",
+      "coverAlt": "",
+      "body": "",
       "url": ""
     }
   ],

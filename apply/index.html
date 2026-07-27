@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Apply for 1:1 Coaching — Pratyush Liftz</title>
-<meta name="description" content="Apply for one-to-one online coaching with Pratyush. A short application about your goal, your schedule and where you are now. Takes about two minutes.">
+<title data-cms="applyForm.meta.title">Apply for 1:1 Coaching — Pratyush Liftz</title>
+<meta data-cms-content="applyForm.meta.description" name="description" content="Apply for one-to-one online coaching with Pratyush. A short application about your goal, your schedule and where you are now. Takes about two minutes.">
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://www.pratyushliftz.com/apply/">
 <meta name="theme-color" content="#0B0B0D">
@@ -82,10 +82,14 @@ input{font:inherit;color:inherit}
 .prog-lab{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--ash)}
 
 /* ── stage ──────────────────────────────────────────────────────── */
-.stage{position:relative;z-index:2;height:100%;display:grid;place-items:center;
+/* Centred while the question fits, scrollable the moment it doesn't.
+   `margin:auto` on a flex child centres without clipping the top the
+   way place-items:center does once content outgrows the viewport. */
+.stage{position:relative;z-index:2;height:100%;display:flex;
+  overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;
   padding:104px max(28px,9vw) 96px}
 .screen{width:100%;max-width:720px;display:none}
-.screen.live{display:block}
+.screen.live{display:block;margin:auto}
 /* step transition: outgoing lifts + blurs away, incoming settles in */
 .screen.out{animation:stepOut .34s var(--ease) forwards}
 .screen.in{animation:stepIn .52s var(--ease) both}
@@ -206,11 +210,39 @@ html.no-js .stage{height:auto;display:block;padding-top:120px}
   [data-anim]{opacity:1;transform:none;filter:none}
   .glow{transition:none}
 }
+/* ── short viewports: laptops at 1280x800/1440x900, landscape tablets.
+      Tighten the vertical rhythm so a question still fits between the
+      fixed header and the progress rail instead of needing a scroll. ── */
+@media(max-height:860px){
+  .stage{padding:92px max(28px,9vw) 84px}
+  .eyebrow{margin-bottom:18px}
+  .q{font-size:clamp(28px,4.4vw,44px);margin-bottom:10px}
+  .desc{margin-bottom:22px}
+  .opts{gap:8px;margin-bottom:24px}
+  .opt{padding:14px 18px}
+  .textwrap,.grid{margin-bottom:24px}
+  .grid{gap:16px 26px}
+  .mast{font-size:clamp(40px,6.4vw,68px);margin-bottom:16px}
+  .lead{margin-bottom:26px}
+}
+@media(max-height:780px){
+  .stage{padding:80px max(28px,9vw) 74px}
+  .eyebrow{margin-bottom:13px}
+  .q{font-size:clamp(24px,3.6vw,34px)}
+  .desc{margin-bottom:18px;font-size:14px}
+  .opts{gap:7px;margin-bottom:18px}
+  .opt{padding:11px 16px}
+  .opt .val{font-size:14.5px}
+  .btn{padding:13px 26px}
+  .err{margin-top:10px;min-height:16px}
+}
 @media(max-width:620px){
   .stage{padding:96px 24px 92px}
   .opt{padding:15px 16px}.opt .key{display:none}
 }
 </style>
+<script>window.PL_FORM_API = 'https://pratyushapi.edastra.in';</script>
+<script src="/js/cms.js"></script>
 </head>
 <body>
 
@@ -572,7 +604,7 @@ html.no-js .stage{height:auto;display:block;padding-top:120px}
 
 <script>
 document.documentElement.classList.remove('no-js');
-(() => {
+(window.PL_CMS_READY || Promise.resolve()).then(() => {
   'use strict';
   const CFG = JSON.parse(document.getElementById('pl-form-config').textContent);
   const API = (window.PL_FORM_API || CFG.api || '').replace(/\/$/, '');
@@ -812,7 +844,7 @@ document.documentElement.classList.remove('no-js');
   byId(current).classList.add('live');
   play(byId(current));
   progress();
-})();
+});
 </script>
 </body>
 </html>
