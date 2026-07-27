@@ -1,0 +1,28 @@
+[Unit]
+Description=Pratyush Liftz admin API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=plapi
+Group=plapi
+WorkingDirectory=/opt/pl-admin-api
+EnvironmentFile=/opt/pl-admin-api/.env
+ExecStart=/usr/bin/node src/server.js
+Restart=always
+RestartSec=3
+
+# Applications are written to /var/lib/pl-admin-api, which systemd creates
+# and owns for us; everything else the service touches is read-only.
+StateDirectory=pl-admin-api
+StateDirectoryMode=0700
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadOnlyPaths=/opt/pl-admin-api
+
+[Install]
+WantedBy=multi-user.target
