@@ -93,6 +93,28 @@ view — full photo, result badge and the whole story, with arrow-key paging.
 A transformation can carry a `video` instead: the card gets a play badge and
 the expanded view plays the clip. Both are set per client in the console.
 
+## Motion
+
+The home page motion follows the reference build (compasia.com) — which runs
+GSAP + ScrollTrigger + SplitType + Lenis — reproduced without the libraries,
+since the whole site is otherwise dependency-free:
+
+| | |
+| --- | --- |
+| Section headings | split into words in the DOM, each rising out of its own mask 55ms after the last, on a long decelerating ease. Inline `<em>`/`<br>` survive the split |
+| `[data-par]` | scrubbed parallax: elements drift a fraction of the scroll distance while on screen, from one rAF-throttled listener |
+| Result cards | click for a full view, arrow keys to page |
+| Existing `.rv` | fade-up entrance reveals, unchanged |
+
+One deliberate omission: **no smooth-scroll hijacking.** The reference site
+runs Lenis, and reimplementing it badly costs more than it gains — it breaks
+scrollbar dragging, keyboard paging and sticky positioning. Anchor links use
+native `scroll-behavior: smooth` instead.
+
+Everything above stands down under `prefers-reduced-motion`, and `npm test`
+asserts both that the heading copy survives the split and that the motion
+switches off.
+
 To make a new piece of copy editable: add `data-cms="group.key"` to the element,
 run `npm run extract` (which reads the current markup back into `site.json`), and
 the field appears in the console automatically. Collections need a matching entry

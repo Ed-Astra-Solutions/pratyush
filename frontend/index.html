@@ -74,6 +74,15 @@ Grain texture: export the SVG noise below as a tiling PNG (grain.png,
                blend-mode: overlay, opacity .5) - Elementor section background overlay
 Animations   : Elementor built-in entrance (fade-up, 60ms stagger) - do NOT
                use bounce/zoom presets; they read as page-builder defaults
+Headings     : words rise out of individual masks, 55ms apart, on a long
+               decelerating ease (WP equivalent: SplitType + GSAP stagger,
+               ease power4.out). Split in the DOM so inline <em> survives
+Parallax     : [data-par] elements drift a fraction of scroll distance while
+               on screen - one rAF-throttled listener (WP: Motion Effects →
+               Vertical Scroll). Over-scale any element whose edge could show
+Lightbox     : result cards open a full view with arrow-key paging
+               (WP: Elementor Lightbox on the gallery widget)
+Reduced motion: every one of the above stands down under the media query
 Media library: upload every file in /images with the Title / Alt /
                Caption / Description listed in images/image-metadata.md
 Ticker       : Elementor Pro loop carousel OR "Marquee Elementor" addon
@@ -466,6 +475,28 @@ is the trigger, so the caption and story are clickable too. */
 .story .rv h2,.story h2.rv{clip-path:none;transform:none;transition:none}
 .story .rv .eyebrow::before,.story .eyebrow.rv::before{width:26px;transition:none}
 
+/* ── headings: word-by-word rise ───────────────────────────────
+Each word climbs out of its own mask, 55ms after the one before,
+on a long decelerating ease. Only applies once the script has split
+the text, so a no-JS visitor just gets a plain heading.
+WP: SplitType + GSAP stagger; here it is ~20 lines and no library. */
+h2.split,.rv h2.split{clip-path:none;transform:none;transition:none}
+.split .w{display:inline-block;overflow:hidden;vertical-align:bottom;
+  padding-bottom:.14em;margin-bottom:-.14em}
+.split .wi{display:inline-block;opacity:0;transform:translateY(108%);
+  transition:transform 1.05s cubic-bezier(.16,1,.3,1),opacity .8s cubic-bezier(.16,1,.3,1)}
+.split.in .wi{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .split .wi{opacity:1;transform:none;transition:none}}
+
+/* ── scrubbed parallax ─────────────────────────────────────────
+Marked elements drift a fraction of the page's scroll while they are
+on screen. The banner is over-scaled so the drift never exposes an
+edge. WP: Motion Effects → Vertical Scroll. */
+.story-banner{overflow:hidden}
+.story-banner img{transform:scale(1.14);will-change:transform}
+@media (prefers-reduced-motion:reduce){.story-banner img{transform:none}}
+
 /* gallery images: wipe in from the left, then the usual hover zoom */
 .tf-card.rv figure img{clip-path:inset(0 100% 0 0)}
 .tf-card.rv.in figure img{clip-path:inset(0 0 0 0)}
@@ -552,7 +583,7 @@ Editorial masthead in the brand's own poster language (Bebas Neue
 display + athlete + yellow). Benefit-first headline; one quiet
 apply link keeps the CTA consultative. -->
 <section class="hero grain" id="hero">
-  <div class="hero-figure"><img id="pl-hero-img" data-cms-src="images.hero" src="images/pl-pratyush-coach-training.jpg" alt="Pratyush - online fitness coach for busy working professionals" title="Pratyush - Pratyush Liftz"></div>
+  <div class="hero-figure" data-par="0.1"><img id="pl-hero-img" data-cms-src="images.hero" src="images/pl-pratyush-coach-training.jpg" alt="Pratyush - online fitness coach for busy working professionals" title="Pratyush - Pratyush Liftz"></div>
   <div class="hero-spine" data-cms="hero.spine">PL · Pratyush Liftz · Online Coaching</div>
   <div class="hero-inner">
     <h1 class="mast">
@@ -619,7 +650,7 @@ the coaching philosophy. Vulnerability first, authority second. -->
       </div>
     </div>
     <div class="story-banner rv">
-      <img id="pl-team-banner" data-cms-src="images.banner" src="images/pl-team-banner-welcome.jpg" alt="Welcome to Team PL - discipline, consistency, transformation. Science-based training, flexible nutrition, weekly accountability." title="Welcome to Team PL" loading="lazy">
+      <img id="pl-team-banner" data-par="-0.06" data-par-base="scale(1.14)" data-cms-src="images.banner" src="images/pl-team-banner-welcome.jpg" alt="Welcome to Team PL - discipline, consistency, transformation. Science-based training, flexible nutrition, weekly accountability." title="Welcome to Team PL" loading="lazy">
     </div>
   </div>
 </section>
@@ -898,14 +929,70 @@ requestAnimationFrame(()=>requestAnimationFrame(()=>document.getElementById('her
 const hd=document.getElementById('hd');
 addEventListener('scroll',()=>hd.classList.toggle('solid',scrollY>40),{passive:true});
 
-/* Hero figure: subtle parallax drift (skipped for reduced motion) */
-const hf=document.querySelector('.hero-figure');
-if(hf&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
-  addEventListener('scroll',()=>{
-    const y=Math.min(scrollY,innerHeight);
-    hf.style.transform=`translateY(${y*.1}px)`;
-  },{passive:true});
-}
+const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* Scroll-scrubbed drift. Anything with data-par moves that fraction of
+   the distance the page travels while it is on screen. One rAF-throttled
+   listener drives the lot, hero included. */
+(function(){
+  if(reducedMotion) return;
+  const items=[...document.querySelectorAll('[data-par]')];
+  if(!items.length) return;
+  let queued=false;
+  const update=()=>{
+    queued=false;
+    const vh=innerHeight;
+    for(const el of items){
+      const r=el.getBoundingClientRect();
+      if(r.bottom<-160||r.top>vh+160) continue;          // off screen: leave it be
+      const base=el.dataset.parBase||'';
+      if(el.classList.contains('hero-figure')){
+        el.style.transform=`translate3d(0,${Math.min(scrollY,vh)*+el.dataset.par}px,0)`;
+      }else{
+        const progress=(r.top+r.height/2-vh/2)/vh;        // -1 → 1 across the viewport
+        el.style.transform=`${base} translate3d(0,${(progress*+el.dataset.par*100).toFixed(2)}px,0)`;
+      }
+    }
+  };
+  addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(update)}},{passive:true});
+  addEventListener('resize',update,{passive:true});
+  update();
+})();
+
+/* Headings rise a word at a time. Splitting happens in the DOM so inline
+   <em>/<br> survive; each word gets its own mask and a stagger delay. */
+(function(){
+  const heads=document.querySelectorAll('.transf h2,.system h2,.videos h2,.method h2,.fit h2,.faq h2,.pillars h2,.enquiry h2,.problem h2');
+  if(!heads.length) return;
+  const wrap=(node)=>{
+    for(const child of [...node.childNodes]){
+      if(child.nodeType===3){
+        if(!child.textContent.trim()){continue}
+        const frag=document.createDocumentFragment();
+        for(const token of child.textContent.split(/(\s+)/)){
+          if(!token) continue;
+          if(!token.trim()){frag.appendChild(document.createTextNode(token));continue}
+          const mask=document.createElement('span');mask.className='w';
+          const inner=document.createElement('span');inner.className='wi';
+          inner.textContent=token;mask.appendChild(inner);frag.appendChild(mask);
+        }
+        child.replaceWith(frag);
+      }else if(child.nodeType===1&&!child.classList.contains('w')){
+        wrap(child);
+      }
+    }
+  };
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    io.unobserve(e.target);e.target.classList.add('in');
+  }),{threshold:.25});
+  heads.forEach(h=>{
+    wrap(h);
+    h.classList.add('split');
+    [...h.querySelectorAll('.wi')].forEach((w,i)=>{w.style.transitionDelay=(i*55)+'ms'});
+    io.observe(h);
+  });
+})();
 
 /* Scroll reveal */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
