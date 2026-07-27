@@ -227,17 +227,7 @@ html.no-js .stage{height:auto;display:block;padding-top:120px}
 
 <main class="stage" id="stage">
   <!-- PL:FORM:START -->
-  <section class="screen" data-screen="welcome">
-    <p class="eyebrow" data-anim="fade-down">Limited client roster</p>
-    <h1 class="mast" data-anim="fade-up" data-anim-delay="70">1:1 Fitness Coaching</h1>
-    <p class="lead" data-anim="fade-up" data-anim-delay="140">Lose fat and build muscle without spending hours in the gym.<br>With the right guidance, it's simple.</p>
-    <div class="actions" data-anim="fade-up" data-anim-delay="210">
-      <button type="button" class="btn start"><span class="label">Start application</span> <span class="arrow">→</span></button>
-      <span class="hint">or press <b>Enter ↵</b></span>
-    </div>
-    <p class="note" data-anim="fade-in" data-anim-delay="280">About 2 minutes · 11 questions · An application is not a commitment.</p>
-  </section>
-
+  <!-- The form opens straight on question 1 - no welcome/intro screen. -->
   <section class="screen" data-screen="source">
     <p class="eyebrow" data-anim="fade-down">01 — Question 1 of 11</p>
     <h2 class="q" data-anim="fade-up" data-anim-delay="70"><span class="n" aria-hidden="true">01</span>How did you find out about my coaching?</h2>
@@ -259,9 +249,7 @@ html.no-js .stage{height:auto;display:block;padding-top:120px}
         <svg class="tick" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg>
       </button>
     </div>
-    <div class="actions" data-anim="fade-up" data-anim-delay="350">
-      <button type="button" class="btn ghost back">Back</button>
-    </div>
+    <!-- first question: nothing to go back to -->
     <p class="err" role="alert"></p>
   </section>
 
@@ -596,7 +584,7 @@ document.documentElement.classList.remove('no-js');
   const byId = (id) => screens.find((s) => s.dataset.screen === id);
   const answers = {};
   const openedAt = Date.now();
-  let current = 'welcome';
+  let current = '';   // set to the first step at boot, below
   const history = [];
 
   /* ── Elementor-style entrance animations, replayed per screen ──── */
@@ -737,7 +725,7 @@ document.documentElement.classList.remove('no-js');
 
     $('.next', screen)?.addEventListener('click', () => advance(step, screen));
     // `history` is the stack of screens we came from, so Back is just a pop.
-    $('.back', screen)?.addEventListener('click', () => show(history.pop() ?? 'welcome', true));
+    $('.back', screen)?.addEventListener('click', () => show(history.pop() ?? stepIds[0], true));
     screen.addEventListener('keydown', (e) => {
       if (e.key !== 'Enter') return;
       if (e.target.tagName === 'INPUT' && step.type === 'contact' && !e.metaKey) {
@@ -748,8 +736,6 @@ document.documentElement.classList.remove('no-js');
       advance(step, screen);
     });
   });
-
-  $('.start')?.addEventListener('click', () => { history.push('welcome'); show(stepIds[0]); });
 
   // 1-9 picks an option, like a keyboard-first form
   addEventListener('keydown', (e) => {
@@ -821,8 +807,11 @@ document.documentElement.classList.remove('no-js');
     }
   });
 
-  byId('welcome').classList.add('live');
-  play(byId('welcome'));
+  // land on question 1 with the progress bar already showing
+  current = stepIds[0];
+  byId(current).classList.add('live');
+  play(byId(current));
+  progress();
 })();
 </script>
 </body>
