@@ -1,6 +1,7 @@
 # Pratyush Liftz
 
-Marketing site, admin console and content pipeline.
+Marketing site, application form and content pipeline. The admin console that
+drives it lives in [pratyushAdmin](https://github.com/Ed-Astra-Solutions/pratyushAdmin).
 
 ```
 frontend/          the public site — hand-written HTML/CSS, no framework
@@ -10,7 +11,6 @@ frontend/          the public site — hand-written HTML/CSS, no framework
   content/site.json  every editable string, list, image path and form question
   images/            all site imagery
   CNAME              custom domain for GitHub Pages
-admin/             the admin console — static, served at /admin on the same Pages site
 backend/           the API that runs on EC2: commits content, receives applications
 build/build.mjs    injects content/site.json into the HTML → dist/
 test/              end-to-end test of the application form (npm test)
@@ -20,7 +20,7 @@ test/              end-to-end test of the application form (npm test)
 ## How an edit reaches the live site
 
 ```
-admin console (/admin, GitHub Pages)
+admin console  ← its own repo + Pages site: Ed-Astra-Solutions/pratyushAdmin
         │  PUT /api/content  (bearer token)
         ▼
 backend (EC2, nginx + TLS)          ← holds the GitHub token; the console never does
@@ -71,6 +71,11 @@ parallax backdrop and an animated progress bar — all of which collapse under
 asserts the whole path, including the disqualify branch and the stored record.
 CI runs it before every deploy.
 
+The admin console lives in its own repository,
+[Ed-Astra-Solutions/pratyushAdmin](https://github.com/Ed-Astra-Solutions/pratyushAdmin),
+deployed to https://ed-astra-solutions.github.io/pratyushAdmin/ — deliberately not
+on the public marketing domain. It talks to the same EC2 backend.
+
 ## Editing content
 
 Anything in `frontend/content/site.json` is editable from the console. Two mechanisms
@@ -86,7 +91,7 @@ tie the JSON back to the markup:
 To make a new piece of copy editable: add `data-cms="group.key"` to the element,
 run `npm run extract` (which reads the current markup back into `site.json`), and
 the field appears in the console automatically. Collections need a matching entry
-in `admin/schema.js`.
+in the console's `schema.js` (in the pratyushAdmin repo).
 
 The hook attributes are stripped from the built output, so the shipped HTML stays
 identical to what you would have hand-written.
@@ -101,8 +106,9 @@ npm run extract        # markup → content/site.json (after adding new data-cms
 npm test               # end-to-end application form test (starts its own backend)
 ```
 
-For the console, run the backend locally (see `backend/README.md`) and open
-`http://localhost:4173/admin/`.
+For the console, run the backend locally (see `backend/README.md`) and serve the
+[pratyushAdmin](https://github.com/Ed-Astra-Solutions/pratyushAdmin) checkout —
+its `config.js` points at `localhost:8080` by default.
 
 ## One-time setup
 
@@ -111,8 +117,14 @@ For the console, run the backend locally (see `backend/README.md`) and open
    site will 404, because the HTML now lives under `frontend/`.
 2. **Repository variable.** Settings → Secrets and variables → Actions → Variables →
    `PL_API_BASE` = `https://api.pratyushfitness.edastra.in` (the EC2 endpoint). The
-   build bakes it into `/admin/config.js`.
+   build bakes it into the application form.
 3. **Backend.** Follow `backend/README.md` to bring up the EC2 instance.
 4. Push to `main` and confirm the workflow deploys.
+
+> **The deploy workflow cannot run yet.** Custom GitHub Actions workflows are
+> blocked on this organisation — runs fail immediately with *"the job was not
+> started because your account is locked due to a billing issue."* GitHub's own
+> `pages-build-deployment` still works, so branch-served Pages is fine, but
+> nothing here that needs a build will publish until that lock is cleared.
 
 `CNAME` stays in `frontend/`, so the custom domain carries over unchanged.

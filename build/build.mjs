@@ -23,7 +23,6 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const FRONTEND = join(ROOT, 'frontend');
-const ADMIN = join(ROOT, 'admin');
 const CONTENT = join(FRONTEND, 'content', 'site.json');
 const PAGES = ['index.html', 'blog/index.html', 'apply/index.html'];
 
@@ -333,15 +332,8 @@ function build(outDir = join(ROOT, 'dist')) {
     writeFileSync(dest, html);
   }
 
-  // The admin console ships to /admin on the same Pages site.
-  if (existsSync(ADMIN)) {
-    cpSync(ADMIN, join(outDir, 'admin'), { recursive: true });
-    writeFileSync(join(outDir, 'admin', 'config.js'),
-      `window.PL_ADMIN_CONFIG = ${JSON.stringify({
-        apiBase: process.env.PL_API_BASE || 'https://api.pratyushfitness.edastra.in',
-        siteUrl: `https://${readFileSync(join(FRONTEND, 'CNAME'), 'utf8').trim()}`,
-      }, null, 2)};\n`);
-  }
+  // The admin console is deployed separately, from Ed-Astra-Solutions/pratyushAdmin,
+  // so it is not on the public marketing domain at all.
 
   writeFileSync(join(outDir, 'build.json'), JSON.stringify({
     builtAt: new Date().toISOString(),
