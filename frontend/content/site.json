@@ -1,0 +1,483 @@
+{
+  "meta": {
+    "title": "Pratyush Liftz - Online Fat Loss &amp; Muscle Building Coaching for Busy Professionals",
+    "description": "Online coaching by Pratyush. Lose fat and build muscle even with a busy 9-5 - personalized training, flexible nutrition, travel-proof plans, weekly check-ins and direct accountability. Built for working professionals.",
+    "ogTitle": "Pratyush Liftz - Coaching for Busy Professionals",
+    "ogDescription": "Lose fat while building muscle, even with your busy routine. Online coaching by Pratyush - training, nutrition and accountability built around your real week."
+  },
+  "hero": {
+    "spine": "PL · Pratyush Liftz · Online Coaching",
+    "line1": "Lose fat,",
+    "line2": "build muscle —",
+    "line3": "busy or not",
+    "body": "Transform into your best self even with a demanding 9-5, travel and family. A system built around your real week. <b>Not a 12-week crash.</b>",
+    "ctaLabel": "Apply for coaching"
+  },
+  "ticker": {
+    "text": "Fat Loss <i>✦</i> Muscle Gain <i>✦</i> Busy Professionals <i>✦</i> Custom Training <i>✦</i> Flexible Nutrition <i>✦</i> Travel-Proof Plans <i>✦</i> Weekly Check-ins <i>✦</i> Direct Accountability <i>✦</i>"
+  },
+  "problem": {
+    "eyebrow": "The real problem",
+    "heading": "You don't lack willpower. You lack a <em>system</em> that fits your week.",
+    "pivot": "You already deliver for everyone: your boss, your team, your family. <em>What's missing is a plan built around your actual routine,</em> and someone who keeps you accountable to it.",
+    "pain1": "<b>Generic plans ignore your calendar.</b>Templates written for people with two spare hours a day collapse the moment a late meeting, a flight or a family dinner shows up.",
+    "pain2": "<b>All-or-nothing diets never survive real life.</b>Cut everything out and it works for three weeks, then one weekend undoes it, and the guilt costs more than the calories.",
+    "pain3": "<b>Nobody is actually checking on you.</b>Without a weekly review and someone who notices when you slip, motivation quietly becomes the plan. Motivation is not a plan."
+  },
+  "story": {
+    "captionName": "Pratyush",
+    "captionRole": "Founder · Team PL",
+    "eyebrow": "Meet your coach",
+    "heading": "Coaching built for the life you <em>actually live.</em>",
+    "lead": "I'm Pratyush. I help working professionals lose fat and build muscle without putting their careers, their travel or their family time on hold.",
+    "p1": "Most plans are written for people with two spare hours a day. Real professionals don't have that. They have early meetings, deadlines, client dinners, flights and families. So the plan has to be built around the week you actually have, not the one a template assumes.",
+    "p2": "<b>That's the whole idea: a system that fits your life, not the other way around.</b>",
+    "p3": "Personalised training around your schedule and equipment. Flexible nutrition that survives travel and eating out. Weekly check-ins, form reviews and direct access, so small problems get fixed before they turn into plateaus, and so you actually understand the deeper concepts, not just follow orders.",
+    "pull": "Your schedule isn't the obstacle. <i>It's the thing we build the plan around.</i>",
+    "p4": "Every client works with me for 3, 6 or 12 months and finishes with the habits, mindset and a maintenance plan to keep the results for good. My job isn't to hand you a 12-week fix, it's to make sure you never need one again.",
+    "sign": "<b>Pratyush</b> · Founder, Pratyush Liftz"
+  },
+  "system": {
+    "eyebrow": "What every client gets",
+    "heading": "Everything is built for you.<br>Nothing is templated.",
+    "sub": "One coach. One system. Every part of it adjusts to your week, not the other way around, whether you commit for 3, 6 or 12 months.",
+    "card1": {
+      "title": "Personalized Training Schedule",
+      "body": "Built around your equipment, experience and the hours you actually have, whether that's a commercial gym at 6 a.m. or forty-five minutes in a hotel gym between meetings."
+    },
+    "card2": {
+      "title": "Nutrition That Fits Your Life",
+      "body": "Structured targets around the foods you actually eat: client dinners, weekends and travel included. No meal-prep servitude, no banned lists."
+    },
+    "card3": {
+      "title": "Travel &amp; Holiday Management",
+      "body": "Flights, hotels, work trips and holidays planned for in advance, so momentum survives your calendar instead of dying on it."
+    },
+    "card4": {
+      "title": "Check-in Calls &amp; Direct Chat",
+      "body": "One-on-one calls plus direct chat access to Pratyush, not a portal, not an assistant. Questions answered within the day."
+    },
+    "card5": {
+      "title": "Full Metrics Tracking",
+      "body": "Bodyweight, performance, sleep, stress and recovery in one place. We read the trend, and the plan updates the moment the data asks for it."
+    },
+    "card6": {
+      "title": "Form Reviews &amp; Mindset",
+      "body": "Weekly exercise videos with form feedback, plus the habits, adherence and mindset systems that make results actually stick."
+    }
+  },
+  "results": {
+    "eyebrow": "Client results",
+    "heading": "Proof over <em>promises.</em>",
+    "sub": "Different jobs, different schedules, same system. Every client below did the work around a full, busy life, not in spite of it.",
+    "note": "※ Real client submissions to Pratyush Liftz. Aggregate counters below are placeholders - confirm before publishing."
+  },
+  "method": {
+    "eyebrow": "How it works",
+    "heading": "Three steps. No guesswork.",
+    "step1": {
+      "title": "Apply",
+      "body": "Send a DM or fill the short application. We talk about your goal, your schedule and your history, a straightforward conversation to see whether this is the right fit, on both sides."
+    },
+    "step2": {
+      "title": "Blueprint",
+      "body": "Within 48 hours of onboarding you receive your complete system: training schedule, nutrition targets, tracking setup and the first habits we'll install, all built around your real week."
+    },
+    "step3": {
+      "title": "Execute &amp; adjust",
+      "body": "You train, you eat, you report. Every week the data comes back, the plan evolves, and the results compound, through busy seasons, travel and real life. Finish with a maintenance plan that holds."
+    }
+  },
+  "fit": {
+    "eyebrow": "A deliberately small roster",
+    "heading": "This is coaching, not content.<br>It has to <em>fit.</em>",
+    "yesTitle": "This works if <em>you</em>:",
+    "noTitle": "It isn't for you if:",
+    "yesItems": [
+      "Run a demanding schedule (9-5, travel, family) and refuse to let it be the excuse.",
+      "Can commit 3-5 focused hours a week to training.",
+      "Want a lean, strong body you can actually maintain, not a 12-week stunt.",
+      "Prefer honest feedback and data over hype."
+    ],
+    "noItems": [
+      "You're looking for a quick fix, a detox or a shortcut.",
+      "You want a plan but not the accountability that comes with it.",
+      "You'd rather guess than track.",
+      "You expect the coach to want it more than you do."
+    ]
+  },
+  "quote": {
+    "text": "\"You don't need more hours in the day. You need a system that <i>respects the ones you have.</i>\"",
+    "cite": "<b>Pratyush</b> · Founder · Team PL"
+  },
+  "faq": {
+    "eyebrow": "Before you ask",
+    "heading": "Honest answers to fair questions.",
+    "sub": "Anything else? Ask it in your application. You'll get a direct answer, not a pitch."
+  },
+  "pillars": {
+    "eyebrow": "The honest details",
+    "heading": "What working together <em>actually</em> looks like.",
+    "p1": {
+      "key": "3·6·12",
+      "title": "The commitment",
+      "body": "You choose to work with me for 3, 6 or 12 months. Longer isn't upselling, it's how lasting change actually happens, and how habits get built for good."
+    },
+    "p2": {
+      "key": "Yours",
+      "title": "Scope &amp; boundaries",
+      "body": "This coaching is educational, not medical care or nutrition therapy. Your photos and metrics stay in a private folder shared only with you, and nothing is ever posted without your permission."
+    },
+    "p3": {
+      "key": "After",
+      "title": "After the transformation",
+      "body": "You don't get left to gain it all back. You finish with a maintenance plan and a clear set of guidelines to permanently sustain your transformation."
+    }
+  },
+  "enquiry": {
+    "eyebrow": "Limited client roster",
+    "heading": "Start the <em>conversation.</em>",
+    "sub": "Tell Pratyush where you are and where you want to be. You'll get a personal reply: an honest assessment of whether this system fits your life, and what it would look like if it does.",
+    "assure": "<b>An application is not a commitment.</b> No payment details, no pressure, no automated sales sequence. One conversation, then you decide.",
+    "formLabel": "Your message",
+    "formPreview": "A short application: your goal, your schedule and where you are now. It takes about two minutes.",
+    "ctaLabel": "Apply now",
+    "formNote": "Opens the application form. Pratyush reads every submission personally and replies himself, not a bot, not a sales team."
+  },
+  "footer": {
+    "copyright": "© 2026 Pratyush Liftz. Lose fat while building muscle, even with your busy routine."
+  },
+  "links": {
+    "apply": "/apply/",
+    "instagram": "https://www.instagram.com/pratyushliftz/",
+    "email": "mailto:hello@pratyushliftz.com",
+    "youtube": "https://www.youtube.com/@pratyushliftz"
+  },
+  "images": {
+    "hero": "images/pl-pratyush-coach-training.jpg",
+    "story": "images/pl-pratyush-founder-poster.jpg",
+    "banner": "images/pl-team-banner-welcome.jpg"
+  },
+  "blog": {
+    "metaTitle": "Blog - Pratyush Liftz | Fat Loss &amp; Training for Busy Professionals",
+    "eyebrow": "The Pratyush Liftz journal",
+    "heading": "Train smart.<br>Stay <em>consistent.</em>",
+    "lead": "Practical, no-fluff articles on losing fat, building muscle and staying consistent around a full, busy schedule.",
+    "soon": "More articles coming soon. Follow <a href=\"https://www.instagram.com/pratyushliftz/\" target=\"_blank\" rel=\"noopener\" style=\"color:var(--yellow)\">@pratyushliftz</a> for daily tips.",
+    "copyright": "© 2026 Pratyush Liftz. Lose fat while building muscle, even with your busy routine."
+  },
+  "transformations": [
+    {
+      "image": "images/pl-transformation-harsh.jpg",
+      "name": "Harsh",
+      "stat": "−31 lbs · 5 months",
+      "alt": "Harsh - fat loss transformation, 31 lbs down in 5 months while working a 9-5, Pratyush Liftz client",
+      "title": "Harsh - Team PL",
+      "story": "\"I don't want to waste time. I want my best physique.\" Down 31 lbs while working a full-time 9-5, and not even halfway through the program."
+    },
+    {
+      "image": "images/pl-transformation-dad.jpg",
+      "name": "32-year-old Dad",
+      "stat": "−26 lbs · 6 months",
+      "alt": "32-year-old dad lost 26 lbs in 6 months without giving up family time, Pratyush Liftz client",
+      "title": "Dad rebuild - Team PL",
+      "story": "A job, a kid and real responsibilities. A plan built around his lifestyle got him stronger, fitter and 26 lbs lighter, without giving up family time."
+    },
+    {
+      "image": "images/pl-transformation-parth.jpg",
+      "name": "Parth",
+      "stat": "90 days",
+      "alt": "Parth 90-day transformation - visible abs after two years of training, Pratyush Liftz client",
+      "title": "Parth - Team PL",
+      "story": "Hadn't seen his abs in two years of training. One goal, his leanest physique, pulled together in 90 days."
+    },
+    {
+      "image": "images/pl-transformation-chandra.jpg",
+      "name": "Chandra Shekar",
+      "stat": "96 → 86 kg · 3 months",
+      "alt": "Chandra Shekar progress - 96 kg to 86 kg in 3 months while working a 9-5, Pratyush Liftz client",
+      "title": "Chandra Shekar - Team PL",
+      "story": "Stuck at 96 kg after trying to lose fat many times. In 3 months of 1:1 coaching he got to 86 kg and built habits around his corporate lifestyle."
+    },
+    {
+      "image": "images/pl-transformation-garv.jpg",
+      "name": "Garv",
+      "stat": "10 months · beginner",
+      "alt": "Garv 10-month transformation as a complete beginner, fat lost and muscle built, Pratyush Liftz client",
+      "title": "Garv - Team PL",
+      "story": "A total beginner, tired of random advice online. One clear source for training and nutrition, eating what he likes, still losing fat and building muscle."
+    },
+    {
+      "image": "images/pl-transformation-fayaz.jpg",
+      "name": "Fayaz",
+      "stat": "30 days · 40 hrs/week",
+      "alt": "Fayaz 30-day transformation working 40 hours a week away from home in Canada, Pratyush Liftz client",
+      "title": "Fayaz - Team PL",
+      "story": "Working long hours away from home in Canada. Through the tiring shifts and holidays, consistent fat loss and muscle gain in his first 30 days."
+    }
+  ],
+  "stats": [
+    {
+      "count": "5",
+      "suffix": "+",
+      "label": "Years coaching"
+    },
+    {
+      "count": "100",
+      "suffix": "+",
+      "label": "Professionals coached"
+    },
+    {
+      "count": "100",
+      "suffix": "%",
+      "label": "Plans built from scratch"
+    },
+    {
+      "count": "0",
+      "suffix": "",
+      "label": "Crash diets. Ever"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "How much time does this actually take?",
+      "a": "Most clients train 3-5 hours per week, plus about ten minutes a day for tracking. The program is built around your real availability in week one. If your schedule changes, the plan changes with it."
+    },
+    {
+      "q": "Do I need a gym, or specific equipment?",
+      "a": "No. Programs are written for whatever you have: a full commercial gym, a home setup, or hotel gyms while travelling. The system adapts to the tools, not the reverse."
+    },
+    {
+      "q": "I travel and eat out a lot. Will this survive that?",
+      "a": "It's designed for exactly that. Your nutrition runs on flexible targets and real-world strategies rather than rigid meal plans, and travel, holidays and client dinners are planned for in advance, not punished."
+    },
+    {
+      "q": "What happens in a weekly check-in?",
+      "a": "You submit your data, photos and any form videos; Pratyush reviews everything, records a response covering what's working and what changes next week, and you talk through anything that needs a decision on a call or voice note."
+    },
+    {
+      "q": "How soon will I see results?",
+      "a": "Most clients see measurable change on the scale and tape within three to four weeks, and visible change in photos by weeks six to eight. The honest answer: speed depends on your consistency, and consistency is exactly what the system is built to protect."
+    },
+    {
+      "q": "How long do I sign up for?",
+      "a": "Coaching runs in 3, 6 or 12-month commitments. Longer isn't upselling, it's how lasting change actually happens. Every client finishes with a maintenance plan so the results hold once coaching ends."
+    }
+  ],
+  "posts": [
+    {
+      "tag": "Nutrition",
+      "title": "How to eat out 4 nights a week and still lose fat",
+      "excerpt": "Flexible targets, not banned lists. The exact framework busy professionals use to hit their goals without skipping client dinners.",
+      "url": ""
+    },
+    {
+      "tag": "Training",
+      "title": "The 3-day plan for people who travel constantly",
+      "excerpt": "A minimalist split built for hotel gyms and unpredictable weeks, so momentum survives your calendar.",
+      "url": ""
+    },
+    {
+      "tag": "Mindset",
+      "title": "Why consistency beats intensity every single time",
+      "excerpt": "The uncomfortable truth about transformation: the boring, repeatable stuff is what actually changes your body.",
+      "url": ""
+    },
+    {
+      "tag": "Fat loss",
+      "title": "Fat loss on night shifts and long hours",
+      "excerpt": "How to structure food, sleep and training when your schedule refuses to cooperate.",
+      "url": ""
+    }
+  ],
+  "updatedAt": "2026-07-27T04:57:46.924Z",
+  "updatedBy": "seed",
+  "videoClips": [],
+  "videos": {
+    "eyebrow": "In their words",
+    "heading": "Watch the <em>work</em> pay off.",
+    "sub": "Real clients, real check-ins. Short clips straight from Team PL."
+  },
+  "applyForm": {
+    "meta": {
+      "title": "Apply for 1:1 Coaching — Pratyush Liftz",
+      "description": "Apply for one-to-one online coaching with Pratyush. A short application about your goal, your schedule and where you are now. Takes about two minutes."
+    },
+    "welcome": {
+      "eyebrow": "Limited client roster",
+      "title": "1:1 Fitness Coaching",
+      "body": "Lose fat and build muscle without spending hours in the gym.<br>With the right guidance, it's simple.",
+      "note": "About 2 minutes · 11 questions · An application is not a commitment.",
+      "cta": "Start application"
+    },
+    "success": {
+      "title": "You've taken the first step!",
+      "body": "If we're a good fit, I'll reach out to you for a video-consultation within the next 12-24 hours after reviewing your application.",
+      "cta": "Back to the site"
+    },
+    "disqualify": {
+      "title": "Thank you for considering.",
+      "body": "This is a coaching program with an investment involved. Unfortunately, if you're not ready to invest, this is not for you.",
+      "cta": "Back to the site"
+    },
+    "labels": {
+      "next": "Next",
+      "back": "Back",
+      "submit": "Send application",
+      "multi": "Choose as many as apply",
+      "required": "This one is required.",
+      "enterHint": "press <b>Enter ↵</b>",
+      "sending": "Sending…",
+      "error": "Something went wrong sending your application. Please try again, or DM @pratyushliftz.",
+      "progress": "Step {n} of {total}"
+    },
+    "steps": [
+      {
+        "id": "source",
+        "type": "single",
+        "question": "How did you find out about my coaching?",
+        "required": true,
+        "options": [
+          "Instagram",
+          "YouTube",
+          "Referral from a friend/previous client"
+        ]
+      },
+      {
+        "id": "age",
+        "type": "single",
+        "question": "How old are you?",
+        "required": true,
+        "options": [
+          "<21",
+          "22-24",
+          "25 - 30",
+          "31 - 40",
+          "41-45",
+          "45+"
+        ]
+      },
+      {
+        "id": "goal",
+        "type": "single",
+        "question": "What is the primary fitness goal that you want to achieve?",
+        "required": true,
+        "description": "The one thing you need to immediately start working on.",
+        "options": [
+          "Fat-loss",
+          "Muscle Gain",
+          "Maintaining my health",
+          "I'm confused, need your help to clarify."
+        ]
+      },
+      {
+        "id": "blockers",
+        "type": "multi",
+        "question": "What's stopping you from hitting your goal right now?",
+        "required": true,
+        "description": "You can choose multiple options.",
+        "options": [
+          "Lack of a proper structure",
+          "I don't find enough time",
+          "No Accountability",
+          "I'm just lazy"
+        ]
+      },
+      {
+        "id": "commitment",
+        "type": "single",
+        "question": "How long are you looking to commit for 1:1 Coaching?",
+        "required": true,
+        "options": [
+          "3 Months (Lose 6-8 kgs/12-18 Lbs For An Initial Boost)",
+          "6 Months (Lose 12-15 Kgs/25-30 Lbs, Get Rid Of Belly Fat)",
+          "1 Year (Lose 20+ kgs/45+lbs Get Lean, Have Visible Abs)"
+        ]
+      },
+      {
+        "id": "startWhen",
+        "type": "single",
+        "question": "If we're a good fit, how soon are you ready to start?",
+        "required": true,
+        "options": [
+          "Immediately, I don't wanna waste anymore time.",
+          "Within a week.",
+          "Probably next month, not sure."
+        ]
+      },
+      {
+        "id": "stats",
+        "type": "text",
+        "question": "What is your current bodyweight & height?",
+        "required": true,
+        "description": "Eg: 80 kgs, 185cm.",
+        "placeholder": "Your answer here..."
+      },
+      {
+        "id": "profession",
+        "type": "text",
+        "question": "What is your profession/role?",
+        "required": true,
+        "description": "Eg: Entrepreneur, Software Engineer, Architect, Banker, etc...",
+        "placeholder": "Your answer here..."
+      },
+      {
+        "id": "invest",
+        "type": "single",
+        "question": "Are you at a spot to financially invest in your fitness journey?",
+        "required": true,
+        "options": [
+          "Yes, Sign me up!",
+          "Money is a bit tight, but I will make it work.",
+          "No, I'm not ready to meaningfully invest."
+        ],
+        "disqualifyOn": "No, I'm not ready to meaningfully invest."
+      },
+      {
+        "id": "location",
+        "type": "text",
+        "question": "Where are you currently based?",
+        "required": true,
+        "description": "Eg: Mumbai, India",
+        "placeholder": "Your answer here..."
+      },
+      {
+        "id": "contact",
+        "type": "contact",
+        "question": "Contact Details",
+        "required": true,
+        "description": "So I can get back to you personally.",
+        "fields": [
+          {
+            "key": "name",
+            "label": "Full Name",
+            "placeholder": "John Doe",
+            "inputType": "text",
+            "required": true
+          },
+          {
+            "key": "email",
+            "label": "Email",
+            "placeholder": "john@example.com",
+            "inputType": "email",
+            "required": true
+          },
+          {
+            "key": "phone",
+            "label": "Phone Number",
+            "placeholder": "+91 98765 43210",
+            "inputType": "tel",
+            "required": false
+          },
+          {
+            "key": "instagram",
+            "label": "Instagram Username (if any)",
+            "placeholder": "johndoe123",
+            "inputType": "text",
+            "required": false
+          }
+        ]
+      }
+    ]
+  }
+}

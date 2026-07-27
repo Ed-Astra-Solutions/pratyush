@@ -1,0 +1,118 @@
+# Pratyush Liftz
+
+Marketing site, admin console and content pipeline.
+
+```
+frontend/          the public site — hand-written HTML/CSS, no framework
+  index.html         home page (content hooks marked with data-cms="…")
+  blog/index.html    blog index
+  apply/index.html   the coaching application form
+  content/site.json  every editable string, list, image path and form question
+  images/            all site imagery
+  CNAME              custom domain for GitHub Pages
+admin/             the admin console — static, served at /admin on the same Pages site
+backend/           the API that runs on EC2: commits content, receives applications
+build/build.mjs    injects content/site.json into the HTML → dist/
+test/              end-to-end test of the application form (npm test)
+.github/workflows/ deploy.yml — tests, builds and publishes to GitHub Pages
+```
+
+## How an edit reaches the live site
+
+```
+admin console (/admin, GitHub Pages)
+        │  PUT /api/content  (bearer token)
+        ▼
+backend (EC2, nginx + TLS)          ← holds the GitHub token; the console never does
+        │  GitHub Contents API: commit frontend/content/site.json to main
+        ▼
+push to main → .github/workflows/deploy.yml
+        │  node build/build.mjs build   →  dist/
+        ▼
+GitHub Pages  →  https://pratyushfitness.edastra.in   (usually live in ~60s)
+```
+
+The console also has a **Trigger rebuild** button, which calls `POST /api/rebuild` →
+`workflow_dispatch` on the same workflow, for republishing without a content change.
+
+## How an application reaches you
+
+The site used to hand visitors off to YouForm. It now runs its own form at
+`/apply/`, so the questions are editable in the console and the answers stay on
+infrastructure you control.
+
+```
+/apply/  (GitHub Pages, static)
+    │  POST /api/apply   — no auth, rate-limited, honeypot + timing checks
+    ▼
+backend (EC2)  →  one JSON file per application under /var/lib/pl-admin-api
+    │                (never committed to the repo — leads are private)
+    │  optional: pings NOTIFY_WEBHOOK (Slack/Discord) on each new application
+    ▼
+admin console → Applications: read, triage (new / contacted / won / archived /
+                spam), add private notes, export CSV
+```
+
+The questions themselves live in `content.applyForm` and are edited under
+**Application form** in the console — including the branch that sends anyone
+who picks "not ready to invest" to a polite exit screen instead of the form.
+Because they are site content, changing a question republishes the page like
+any other edit.
+
+The form is a single page with no framework: one question per screen, keyboard
+driven (`1`–`9` picks an option, `Enter` advances), with a no-JS fallback that
+renders every question on one scrolling page. The motion is a hand-rolled
+version of the Elementor stack the rest of the site is documented against —
+entrance animations with stagger, blur/translate step transitions, a mouse-track
+parallax backdrop and an animated progress bar — all of which collapse under
+`prefers-reduced-motion`.
+
+`npm test` drives the real built page in jsdom against a real backend and
+asserts the whole path, including the disqualify branch and the stored record.
+CI runs it before every deploy.
+
+## Editing content
+
+Anything in `frontend/content/site.json` is editable from the console. Two mechanisms
+tie the JSON back to the markup:
+
+| In the HTML | Effect |
+| --- | --- |
+| `data-cms="hero.body"` | element's inner HTML comes from `content.hero.body` |
+| `data-cms-list="fit.yesItems"` | `<ul>` is filled with one `<li>` per array item |
+| `data-cms-href` / `-src` / `-content` | that attribute is replaced |
+| `<!-- PL:FAQ:START --> … <!-- PL:FAQ:END -->` | region rendered from a collection array |
+
+To make a new piece of copy editable: add `data-cms="group.key"` to the element,
+run `npm run extract` (which reads the current markup back into `site.json`), and
+the field appears in the console automatically. Collections need a matching entry
+in `admin/schema.js`.
+
+The hook attributes are stripped from the built output, so the shipped HTML stays
+identical to what you would have hand-written.
+
+## Local development
+
+```bash
+npm install            # jsdom, for the form test
+npm run build          # frontend/ + content → dist/
+npm run preview        # build, then serve dist/ on http://localhost:4173
+npm run extract        # markup → content/site.json (after adding new data-cms hooks)
+npm test               # end-to-end application form test (starts its own backend)
+```
+
+For the console, run the backend locally (see `backend/README.md`) and open
+`http://localhost:4173/admin/`.
+
+## One-time setup
+
+1. **Pages source.** Repo → Settings → Pages → *Build and deployment* → Source:
+   **GitHub Actions**. This replaces branch-root serving; until it is switched the
+   site will 404, because the HTML now lives under `frontend/`.
+2. **Repository variable.** Settings → Secrets and variables → Actions → Variables →
+   `PL_API_BASE` = `https://api.pratyushfitness.edastra.in` (the EC2 endpoint). The
+   build bakes it into `/admin/config.js`.
+3. **Backend.** Follow `backend/README.md` to bring up the EC2 instance.
+4. Push to `main` and confirm the workflow deploys.
+
+`CNAME` stays in `frontend/`, so the custom domain carries over unchanged.
