@@ -16,11 +16,6 @@
   "ticker": {
     "text": "Fat Loss <i>✦</i> Muscle Gain <i>✦</i> Busy Professionals <i>✦</i> Custom Training <i>✦</i> Flexible Nutrition <i>✦</i> Travel-Proof Plans <i>✦</i> Weekly Check-ins <i>✦</i> Direct Accountability <i>✦</i>"
   },
-  "problem": {
-    "pain1": "<b>Generic plans ignore your calendar.</b>Templates written for people with two spare hours a day collapse the moment a late meeting, a flight or a family dinner shows up.",
-    "pain2": "<b>All-or-nothing diets never survive real life.</b>Cut everything out and it works for three weeks, then one weekend undoes it, and the guilt costs more than the calories.",
-    "pain3": "<b>Nobody is actually checking on you.</b>Without a weekly review and someone who notices when you slip, motivation quietly becomes the plan. Motivation is not a plan."
-  },
   "story": {
     "captionName": "Pratyush",
     "captionRole": "Founder · Team PL",
@@ -66,8 +61,7 @@
   "results": {
     "eyebrow": "Client results",
     "heading": "Proof over <em>promises.</em>",
-    "sub": "Different jobs, different schedules, same system. Every client below did the work around a full, busy life, not in spite of it.",
-    "note": "※ Real client submissions to Pratyush Liftz. Aggregate counters below are placeholders - confirm before publishing."
+    "sub": "Different jobs, different schedules, same system. Every client below did the work around a full, busy life, not in spite of it."
   },
   "method": {
     "eyebrow": "How it works",
@@ -85,49 +79,10 @@
       "body": "You train, you eat, you report. Every week the data comes back, the plan evolves, and the results compound, through busy seasons, travel and real life. Finish with a maintenance plan that holds."
     }
   },
-  "fit": {
-    "yesTitle": "This works if <em>you</em>:",
-    "noTitle": "It isn't for you if:",
-    "yesItems": [
-      "Run a demanding schedule (9-5, travel, family) and refuse to let it be the excuse.",
-      "Can commit 3-5 focused hours a week to training.",
-      "Want a lean, strong body you can actually maintain, not a 12-week stunt.",
-      "Prefer honest feedback and data over hype."
-    ],
-    "noItems": [
-      "You're looking for a quick fix, a detox or a shortcut.",
-      "You want a plan but not the accountability that comes with it.",
-      "You'd rather guess than track.",
-      "You expect the coach to want it more than you do."
-    ]
-  },
-  "quote": {
-    "text": "\"You don't need more hours in the day. You need a system that <i>respects the ones you have.</i>\"",
-    "cite": "<b>Pratyush</b> · Founder · Team PL"
-  },
   "faq": {
     "eyebrow": "Before you ask",
     "heading": "Honest answers to fair questions.",
     "sub": "Anything else? Ask it in your application. You'll get a direct answer, not a pitch."
-  },
-  "pillars": {
-    "eyebrow": "The honest details",
-    "heading": "What working together <em>actually</em> looks like.",
-    "p1": {
-      "key": "3·6·12",
-      "title": "The commitment",
-      "body": "You choose to work with me for 3, 6 or 12 months. Longer isn't upselling, it's how lasting change actually happens, and how habits get built for good."
-    },
-    "p2": {
-      "key": "Yours",
-      "title": "Scope &amp; boundaries",
-      "body": "This coaching is educational, not medical care or nutrition therapy. Your photos and metrics stay in a private folder shared only with you, and nothing is ever posted without your permission."
-    },
-    "p3": {
-      "key": "After",
-      "title": "After the transformation",
-      "body": "You don't get left to gain it all back. You finish with a maintenance plan and a clear set of guidelines to permanently sustain your transformation."
-    }
   },
   "enquiry": {
     "eyebrow": "Limited client roster",
