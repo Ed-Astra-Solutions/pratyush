@@ -94,7 +94,7 @@
   },
   "blog": {
     "metaTitle": "Blog - Pratyush Liftz | Fat Loss &amp; Training for Busy Professionals",
-    "eyebrow": "The Pratyush Liftz journal",
+    "eyebrow": "The Journal",
     "heading": "Train smart.<br>Stay <em>consistent.</em>",
     "lead": "Practical articles on losing fat, building muscle and staying consistent around a full, busy schedule.",
     "soon": "More articles coming soon. Follow <a href=\"https://www.instagram.com/pratyushliftz/\" target=\"_blank\" rel=\"noopener\">@pratyushliftz</a> for daily tips.",
@@ -214,10 +214,10 @@
       "tag": "Nutrition",
       "date": "",
       "status": "published",
-      "excerpt": "Flexible targets, not banned lists. The exact framework busy professionals use to hit their goals without skipping client dinners",
+      "excerpt": "The framework my clients use to hit their goals without keeping life from happening.",
       "cover": "",
       "coverAlt": "Test Blog Photo",
-      "body": "5 Simple Habits That Actually Move the Needle<br><br>Move every day, even briefly. A 10-minute walk counts more than a missed hour-long workout.<p>Prioritize protein at breakfast. It curbs cravings and keeps energy steady.</p><p>Track one number. Whether it's steps, reps, or sleep — pick one metric and watch it improve.</p><p>Sleep like it's part of training. Recovery is where the real gains happen.</p><p>Celebrate small wins. Consistency is built on momentum, not perfection.</p>",
+      "body": "5 Simple Habits That Actually Move the Needle<br><br><ul><li>Move every day, even briefly. A 10-minute walk counts more than a missed hour-long workout.</li><li>Prioritize protein at breakfast. It curbs cravings and keeps energy steady.</li><li>Track one number at a time. Whether it's steps, reps, or sleep. Pick one metric and watch it improve.</li><li>Sleep like it's part of training. Recovery is where the real gains happen.</li><li>Celebrate small wins. Consistency is built on momentum, not perfection.</li></ul>",
       "url": ""
     },
     {
@@ -257,7 +257,7 @@
       "url": ""
     }
   ],
-  "updatedAt": "2026-07-28T19:49:57.073Z",
+  "updatedAt": "2026-07-28T19:52:37.513Z",
   "updatedBy": "pratyushliftzz",
   "videoClips": [],
   "videos": {
