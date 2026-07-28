@@ -154,9 +154,9 @@
   ],
   "stats": [
     {
-      "count": "100",
+      "count": "150",
       "suffix": "+",
-      "label": "Professionals Helped"
+      "label": "Professionals Helped (Coaching & Consults)"
     },
     {
       "count": "100",
@@ -257,7 +257,7 @@
       "url": ""
     }
   ],
-  "updatedAt": "2026-07-28T12:44:16.211Z",
+  "updatedAt": "2026-07-28T16:35:05.222Z",
   "updatedBy": "pratyushliftzz",
   "videoClips": [],
   "videos": {
