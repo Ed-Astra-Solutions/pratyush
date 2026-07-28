@@ -150,11 +150,16 @@ footer{border-top:1px solid var(--line);padding:44px 0}
   set('title', post.title);
   set('standfirst', post.excerpt);
   set('body', post.body || '');
+  // Photos placed mid-article are stored as site paths; anchor any that were
+  // written relative, so they load from /blog/post/ too.
+  for (const img of document.getElementById('body').querySelectorAll('img')) {
+    img.setAttribute('src', window.PL_ASSET(img.getAttribute('src')));
+  }
 
   if (post.cover) {
     const fig = document.getElementById('cover');
     const img = document.getElementById('cover-img');
-    img.src = post.cover;
+    img.src = window.PL_ASSET(post.cover);
     img.alt = post.coverAlt || '';
     fig.hidden = false;
   }

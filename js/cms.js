@@ -34,6 +34,18 @@ window.PL_CMS_READY = (() => {
   const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
   /** Copy may carry inline <b>/<em>; data- attributes want the plain text. */
   const strip = (s) => String(s ?? '').replace(/<[^>]+>/g, '');
+  /**
+   * The admin stores uploads as repo-relative paths ("images/foo.jpg"). Those
+   * resolve against the current directory, so a post read at /blog/post/ would
+   * ask for /blog/post/images/foo.jpg. Anchor them at the site root; absolute
+   * URLs and data: URIs pass through untouched.
+   */
+  const asset = (s) => {
+    const v = String(s ?? '').trim();
+    if (!v || /^([a-z][a-z0-9+.-]*:|\/\/|\/|#)/i.test(v)) return v;
+    return `/${v}`;
+  };
+  window.PL_ASSET = asset;
 
   /* ── collection regions ──────────────────────────────────────────── */
   /* Each renderer returns the same markup the page ships with, so the
@@ -52,14 +64,14 @@ window.PL_CMS_READY = (() => {
         t.video ? `data-video="${esc(t.video)}"` : '',
         t.video ? `data-video-type="${esc(t.videoType || 'embed')}"` : '',
         t.video && t.videoWide ? 'data-video-wide="1"' : '',
-        t.video && t.poster ? `data-poster="${esc(t.poster)}"` : '',
+        t.video && t.poster ? `data-poster="${esc(asset(t.poster))}"` : '',
       ].filter(Boolean).join(' ');
       const badge = t.video
         ? '<svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M6 3.5l11 6.5-11 6.5z"/></svg>'
         : '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="M13.5 13.5L18 18M9 6.5v5M6.5 9h5"/></svg>';
       return `
       <figure class="tf-card rv${t.video ? ' has-video' : ''}"${stagger(i, 3)} role="button" tabindex="0" ${data} aria-label="${esc(`${t.name} — ${t.stat}. Open full ${t.video ? 'video' : 'photo'}`)}">
-        <figure><img src="${esc(t.image)}" alt="${esc(t.alt)}" title="${esc(t.title)}" loading="lazy"></figure>
+        <figure><img src="${esc(asset(t.image))}" alt="${esc(t.alt)}" title="${esc(t.title)}" loading="lazy"></figure>
         <span class="zoom">${badge}</span>
         <figcaption><b>${t.name}</b><span>${t.stat}</span></figcaption>
         <p class="tf-story">${t.story}</p>
@@ -68,7 +80,7 @@ window.PL_CMS_READY = (() => {
 
     VIDEOS: (items) => items.map((v, i) => {
       const media = v.type === 'file'
-        ? `<video src="${esc(v.src)}" controls playsinline preload="metadata"${v.poster ? ` poster="${esc(v.poster)}"` : ''}></video>`
+        ? `<video src="${esc(asset(v.src))}" controls playsinline preload="metadata"${v.poster ? ` poster="${esc(asset(v.poster))}"` : ''}></video>`
         : `<iframe src="${esc(v.src)}" title="${esc(v.name)}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
       return `
       <figure class="vid-card${v.wide ? ' wide' : ''} rv"${stagger(i, 3)}>
@@ -89,8 +101,8 @@ window.PL_CMS_READY = (() => {
       const href = window.PL_POSTS.href(p);
       const cover = p.cover
         ? (href
-          ? `\n      <a class="post-cover" href="${esc(href)}" tabindex="-1" aria-hidden="true"><img src="${esc(p.cover)}" alt="${esc(p.coverAlt || '')}" loading="lazy"></a>`
-          : `\n      <span class="post-cover"><img src="${esc(p.cover)}" alt="${esc(p.coverAlt || '')}" loading="lazy"></span>`)
+          ? `\n      <a class="post-cover" href="${esc(href)}" tabindex="-1" aria-hidden="true"><img src="${esc(asset(p.cover))}" alt="${esc(p.coverAlt || '')}" loading="lazy"></a>`
+          : `\n      <span class="post-cover"><img src="${esc(asset(p.cover))}" alt="${esc(p.coverAlt || '')}" loading="lazy"></span>`)
         : '';
       const meta = [p.tag, window.PL_POSTS.dateLabel(p.date)].filter(Boolean)
         .map((x) => `<span>${esc(x)}</span>`).join('');
@@ -279,7 +291,7 @@ window.PL_CMS_READY = (() => {
     for (const [attr, sel] of [['href', 'data-cms-href'], ['src', 'data-cms-src'], ['content', 'data-cms-content']]) {
       for (const el of document.querySelectorAll(`[${sel}]`)) {
         const v = get(content, el.getAttribute(sel));
-        if (v != null) el.setAttribute(attr, v);
+        if (v != null) el.setAttribute(attr, attr === 'content' ? v : asset(v));
       }
     }
     for (const el of document.querySelectorAll('[data-cms]')) {
