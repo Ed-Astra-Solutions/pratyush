@@ -107,7 +107,8 @@
       "stat": "90 days",
       "alt": "Parth 90-day transformation - visible abs after two years of training, Pratyush Liftz client",
       "title": "Parth - Team PL",
-      "story": "He hadn't seen his abs in two years of training. When he found out about my coaching, he asked me to get him to his one goal: his leanest physique. We pulled it off together in 90 days."
+      "story": "He hadn't seen his abs in two years of training. When he found out about my coaching, he asked me to get him to his one goal: his leanest physique. We pulled it off together in 90 days.",
+      "videoWide": false
     },
     {
       "image": "images/pl-whatsapp-image-2026-07-28-at-17-42-38-ms4m9crv.jpg",
@@ -256,7 +257,7 @@
       "url": ""
     }
   ],
-  "updatedAt": "2026-07-28T12:16:08.252Z",
+  "updatedAt": "2026-07-28T12:44:16.211Z",
   "updatedBy": "pratyushliftzz",
   "videoClips": [],
   "videos": {
@@ -306,6 +307,7 @@
         "options": [
           "Instagram",
           "YouTube",
+          "LinkedIn",
           "Referral from a friend/previous client"
         ]
       },
@@ -372,22 +374,6 @@
         ]
       },
       {
-        "id": "stats",
-        "type": "text",
-        "question": "What is your current bodyweight & height?",
-        "required": true,
-        "description": "Eg: 80 kgs, 185cm.",
-        "placeholder": "Your answer here..."
-      },
-      {
-        "id": "profession",
-        "type": "text",
-        "question": "What is your profession/role?",
-        "required": true,
-        "description": "Eg: Entrepreneur, Software Engineer, Architect, Banker, etc...",
-        "placeholder": "Your answer here..."
-      },
-      {
         "id": "invest",
         "type": "single",
         "question": "Are you at a spot to financially invest in your fitness journey?",
@@ -400,12 +386,39 @@
         "disqualifyOn": "No, I'm not ready to meaningfully invest."
       },
       {
+        "id": "profession",
+        "type": "text",
+        "question": "What is your profession/role?",
+        "required": true,
+        "description": "Eg: Software Engineer, Architect, Banker, etc...",
+        "placeholder": "Your answer here..."
+      },
+      {
+        "id": "stats",
+        "type": "text",
+        "question": "What is your current bodyweight & height?",
+        "required": true,
+        "description": "Eg: 80 kgs, 185cm.",
+        "placeholder": "Your answer here..."
+      },
+      {
         "id": "location",
         "type": "text",
         "question": "Where are you currently based?",
         "required": true,
         "description": "Eg: Mumbai, India",
         "placeholder": "Your answer here..."
+      },
+      {
+        "id": "why_do_you_want_to_transform_you",
+        "type": "text",
+        "question": "Why do you want to transform yourself?",
+        "required": false,
+        "options": [
+          "First answer",
+          "Second answer"
+        ],
+        "description": "<i>You can be as detailed as you want to.</i>"
       },
       {
         "id": "contact",
