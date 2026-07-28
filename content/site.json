@@ -102,12 +102,12 @@
   },
   "transformations": [
     {
-      "image": "images/pl-transformation-harsh.jpg",
-      "name": "Harsh",
-      "stat": "−31 lbs · 5 months",
-      "alt": "Harsh - fat loss transformation, 31 lbs down in 5 months while working a 9-5, Pratyush Liftz client",
-      "title": "Harsh - Team PL",
-      "story": "\"I don't want to waste time. I want my best physique.\" Down 31 lbs while working a full-time 9-5, and not even halfway through the program."
+      "image": "images/pl-transformation-parth.jpg",
+      "name": "Parth, A Friend of Mine",
+      "stat": "90 days",
+      "alt": "Parth 90-day transformation - visible abs after two years of training, Pratyush Liftz client",
+      "title": "Parth - Team PL",
+      "story": "He hadn't seen his abs in two years of training. When he found out about my coaching, he asked me to get him to his one goal: his leanest physique. We pulled it off together in 90 days."
     },
     {
       "image": "images/pl-whatsapp-image-2026-07-28-at-17-42-38-ms4m9crv.jpg",
@@ -119,12 +119,12 @@
       "full": "images/pl-whatsapp-image-2026-07-28-at-17-42-38-ms4m9m69.jpg"
     },
     {
-      "image": "images/pl-transformation-parth.jpg",
-      "name": "Parth",
-      "stat": "90 days",
-      "alt": "Parth 90-day transformation - visible abs after two years of training, Pratyush Liftz client",
-      "title": "Parth - Team PL",
-      "story": "Hadn't seen his abs in two years of training. One goal, his leanest physique, pulled together in 90 days."
+      "image": "images/pl-transformation-harsh.jpg",
+      "name": "Harsh",
+      "stat": "−31 lbs · 5 months",
+      "alt": "Harsh - fat loss transformation, 31 lbs down in 5 months while working a 9-5, Pratyush Liftz client",
+      "title": "Harsh - Team PL",
+      "story": "\"I don't want to waste time. I want my best physique.\" Down 31 lbs while working a full-time 9-5, and not even halfway through the program."
     },
     {
       "image": "images/pl-transformation-chandra.jpg",
@@ -256,7 +256,7 @@
       "url": ""
     }
   ],
-  "updatedAt": "2026-07-28T12:13:58.270Z",
+  "updatedAt": "2026-07-28T12:16:08.252Z",
   "updatedBy": "pratyushliftzz",
   "videoClips": [],
   "videos": {
