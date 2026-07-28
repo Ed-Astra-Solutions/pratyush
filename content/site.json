@@ -73,7 +73,7 @@
     "eyebrow": "Limited client roster",
     "heading": "Start the <em>conversation.</em>",
     "sub": "Tell me where you are and where you want to be. You'll get a reply in 24 hours: an honest assessment of whether this system fits your life, and what it would look like if it does.",
-    "assure": "<b>An application is not a commitment.</b> No payment details, no pressure, no automated sales sequence. One conversation, then you decide.",
+    "assure": "<b>An application is not a commitment.</b> It's me trying to assess if we'd be a good fit to go on with your fitness goals.",
     "formLabel": "What I need from you.",
     "formPreview": "A short application: your goal, your schedule and where you are now. It takes about two minutes.",
     "ctaLabel": "Apply now",
@@ -257,7 +257,7 @@
       "url": ""
     }
   ],
-  "updatedAt": "2026-07-28T16:36:12.671Z",
+  "updatedAt": "2026-07-28T16:46:10.698Z",
   "updatedBy": "pratyushliftzz",
   "videoClips": [],
   "videos": {
