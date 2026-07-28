@@ -39,6 +39,40 @@ window.PL_CMS_READY = (() => {
   /* Each renderer returns the same markup the page ships with, so the
      rendered page stays diffable against the static fallback. */
 
+  /* ── responsive images ───────────────────────────────────────────── */
+  /* The images that ship with the repo have resized .jpg/.webp siblings on
+     disk (see images/image-metadata.md): pl-x-480.webp, pl-x-768.jpg and so
+     on. This map records the intrinsic size and which widths exist, so a
+     phone can fetch a 20 KB file instead of the full-size original.
+     Anything uploaded later is simply absent here and renders as a plain
+     <img>, exactly as before. */
+  const VARIANTS = {
+    'images/pl-pratyush-coach-training.jpg': [1290, 1353, [480, 768, 1200]],
+    'images/pl-pratyush-founder-poster.jpg': [1082, 1353, [480, 768]],
+    'images/pl-team-banner-welcome.jpg': [1600, 600, [480, 768, 1200]],
+    'images/pl-transformation-chandra.jpg': [385, 206, []],
+    'images/pl-transformation-dad.jpg': [1021, 798, [480, 768]],
+    'images/pl-transformation-fayaz.jpg': [1420, 811, [480, 768, 1200]],
+    'images/pl-transformation-garv.jpg': [1724, 729, [480, 768, 1200]],
+    'images/pl-transformation-harsh.jpg': [1011, 905, [480, 768]],
+    'images/pl-transformation-parth.jpg': [769, 669, [480]],
+  };
+
+  /** <picture> with webp + jpg srcsets, or a plain <img> for unknown files. */
+  function responsiveImg(src, sizes, attrs) {
+    const v = VARIANTS[src];
+    if (!v) return `<img src="${esc(src)}" ${attrs}>`;
+    const [w, h, widths] = v;
+    const stem = src.slice(0, -4);
+    const set = (ext) => [...widths.map((n) => `${stem}-${n}.${ext} ${n}w`),
+                          `${stem}.${ext} ${w}w`].join(', ');
+    return `<picture><source type="image/webp" srcset="${esc(set('webp'))}" sizes="${esc(sizes)}">`
+      + `<img src="${esc(src)}" srcset="${esc(set('jpg'))}" sizes="${esc(sizes)}"`
+      + ` width="${w}" height="${h}" ${attrs} decoding="async"></picture>`;
+  }
+
+  const TF_SIZES = '(max-width:980px) calc(100vw - 64px), 33vw';
+
   const stagger = (i, steps) =>
     (i % steps === 0 ? '' : ` style="transition-delay:.${String((i % steps) * 8).padStart(2, '0')}s"`);
 
@@ -59,7 +93,7 @@ window.PL_CMS_READY = (() => {
         : '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="9" cy="9" r="6"/><path d="M13.5 13.5L18 18M9 6.5v5M6.5 9h5"/></svg>';
       return `
       <figure class="tf-card rv${t.video ? ' has-video' : ''}"${stagger(i, 3)} role="button" tabindex="0" ${data} aria-label="${esc(`${t.name} — ${t.stat}. Open full ${t.video ? 'video' : 'photo'}`)}">
-        <figure><img src="${esc(t.image)}" alt="${esc(t.alt)}" title="${esc(t.title)}" loading="lazy"></figure>
+        <figure>${responsiveImg(t.image, TF_SIZES, `alt="${esc(t.alt)}" title="${esc(t.title)}" loading="lazy"`)}</figure>
         <span class="zoom">${badge}</span>
         <figcaption><b>${t.name}</b><span>${t.stat}</span></figcaption>
         <p class="tf-story">${t.story}</p>
@@ -279,7 +313,15 @@ window.PL_CMS_READY = (() => {
     for (const [attr, sel] of [['href', 'data-cms-href'], ['src', 'data-cms-src'], ['content', 'data-cms-content']]) {
       for (const el of document.querySelectorAll(`[${sel}]`)) {
         const v = get(content, el.getAttribute(sel));
-        if (v != null) el.setAttribute(attr, v);
+        if (v == null) continue;
+        // A swapped-in image has none of the pre-generated sizes: drop the
+        // srcsets baked into the markup so the browser cannot pick a 404.
+        if (attr === 'src' && el.tagName === 'IMG' && el.getAttribute('src') !== v) {
+          el.removeAttribute('srcset');
+          el.removeAttribute('sizes');
+          el.parentElement?.querySelectorAll?.(':scope > source').forEach((n) => n.remove());
+        }
+        el.setAttribute(attr, v);
       }
     }
     for (const el of document.querySelectorAll('[data-cms]')) {

@@ -109,6 +109,7 @@ body{background:var(--ink);color:var(--bone);font-family:var(--body);font-weight
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 32px}
+picture{display:contents}
 .eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--ash);
   font-weight:500;display:flex;align-items:center;gap:14px}
 .eyebrow::before{content:"";width:26px;height:1px;background:var(--yellow)}
@@ -351,17 +352,6 @@ is the trigger, so the caption and story are clickable too. */
 .vid-card figcaption span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);text-align:right}
 @media(max-width:980px){.vid-grid{grid-template-columns:1fr}.videos{padding:90px 0}}
 
-/* ═══ METHOD ═══ */
-.method{padding:130px 0;background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.steps{margin-top:70px}
-.step{display:grid;grid-template-columns:130px 1fr 1.2fr;gap:44px;padding:44px 0;border-top:1px solid var(--line);align-items:baseline}
-.step:last-child{border-bottom:1px solid var(--line)}
-.step .num{font-family:var(--display);font-size:56px;color:var(--yellow);font-weight:400;line-height:1;letter-spacing:.04em}
-.step h3{font-family:var(--display);font-weight:400;font-size:30px;letter-spacing:.04em}
-.step p{color:var(--ash);font-size:15.5px}
-@media(max-width:900px){.step{grid-template-columns:1fr;gap:12px;padding:34px 0}
-  .step .num{font-size:44px}.method{padding:90px 0}}
-
 /* ═══ FAQ ═══ */
 .faq{padding:130px 0;border-top:1px solid var(--line)}
 .faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:80px;align-items:start}
@@ -446,10 +436,6 @@ on screen. WP: Motion Effects → Vertical Scroll. */
   stroke-dasharray:170;stroke-dashoffset:170;transition:stroke-dashoffset 1.4s ease .25s}
 .sys-card.rv.in .glyph path,.sys-card.rv.in .glyph circle,.sys-card.rv.in .glyph rect{stroke-dashoffset:0}
 
-/* method: step numbers slide in */
-.step .num{opacity:0;transform:translateX(-20px);transition:opacity .7s ease .15s,transform .7s cubic-bezier(.16,.84,.28,1) .15s}
-.step.rv.in .num{opacity:1;transform:none}
-
 /* enquiry form: fields cascade */
 .form.rv>*{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,.84,.28,1)}
 .form.rv>*:nth-child(1){transition-delay:.25s}
@@ -479,7 +465,6 @@ on screen. WP: Motion Effects → Vertical Scroll. */
   .rv .eyebrow::before,.eyebrow.rv::before{width:26px;transition:none}
   .tf-card.rv figure img{clip-path:none}
   .sys-card .glyph path,.sys-card .glyph circle,.sys-card .glyph rect{stroke-dashoffset:0;transition:none}
-  .step .num{opacity:1;transform:none;transition:none}
   .form.rv>*{opacity:1;transform:none;transition:none}
   .hero::before{animation:none}
   .btn::after{display:none}
@@ -491,6 +476,12 @@ footer{padding:64px 0 40px;border-top:1px solid var(--line)}
 .foot .brand img{width:34px;height:34px}
 .foot-links{display:flex;gap:28px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ash)}
 .foot-links a:hover{color:var(--bone)}
+.foot-social{display:flex;gap:12px}
+.foot-social a{display:grid;place-items:center;width:38px;height:38px;border:1px solid var(--line);border-radius:50%;
+  color:var(--ash);transition:color .3s ease,border-color .3s ease,background .3s ease}
+.foot-social a svg{width:17px;height:17px}
+.foot-social a:hover{color:var(--ink);background:var(--yellow);border-color:var(--yellow)}
+@media(max-width:700px){.foot{justify-content:center;text-align:center}.foot-links{justify-content:center;flex-wrap:wrap;gap:18px}}
 .foot small{font-size:12px;color:#5c5c63;letter-spacing:.05em}
 </style>
 <script src="/js/cms.js"></script>
@@ -519,7 +510,7 @@ Editorial masthead in the brand's own poster language (Bebas Neue
 display + athlete + yellow). Benefit-first headline; one quiet
 apply link keeps the CTA consultative. -->
 <section class="hero grain" id="hero">
-  <div class="hero-figure" data-par="0.1"><img id="pl-hero-img" data-cms-src="images.hero" src="images/pl-pratyush-coach-training.jpg" alt="Pratyush - online fitness coach for busy working professionals" title="Pratyush - Pratyush Liftz"></div>
+  <div class="hero-figure" data-par="0.1"><picture><source type="image/webp" srcset="images/pl-pratyush-coach-training-480.webp 480w, images/pl-pratyush-coach-training-768.webp 768w, images/pl-pratyush-coach-training-1200.webp 1200w, images/pl-pratyush-coach-training.webp 1290w" sizes="(max-width:900px) 100vw, 52vw"><img src="images/pl-pratyush-coach-training.jpg" srcset="images/pl-pratyush-coach-training-480.jpg 480w, images/pl-pratyush-coach-training-768.jpg 768w, images/pl-pratyush-coach-training-1200.jpg 1200w, images/pl-pratyush-coach-training.jpg 1290w" sizes="(max-width:900px) 100vw, 52vw" width="1290" height="1353" id="pl-hero-img" data-cms-src="images.hero" alt="Pratyush - online fitness coach for busy working professionals" title="Pratyush - Pratyush Liftz" fetchpriority="high" decoding="async"></picture></div>
   <div class="hero-spine" data-cms="hero.spine">PL · Pratyush Liftz · Online Coaching</div>
   <div class="hero-inner">
     <h1 class="mast">
@@ -559,32 +550,32 @@ images/image-metadata.md. Proof placed first, straight after the hero. -->
     <div class="tf-grid">
       <!-- PL:TRANSFORMATIONS:START -->
       <figure class="tf-card rv">
-        <figure><img src="images/pl-transformation-harsh.jpg" alt="Harsh - fat loss transformation, 31 lbs down in 5 months while working a 9-5, Pratyush Liftz client" title="Harsh - Team PL" loading="lazy"></figure>
+        <figure><picture><source type="image/webp" srcset="images/pl-transformation-harsh-480.webp 480w, images/pl-transformation-harsh-768.webp 768w, images/pl-transformation-harsh.webp 1011w" sizes="(max-width:980px) calc(100vw - 64px), 33vw"><img src="images/pl-transformation-harsh.jpg" srcset="images/pl-transformation-harsh-480.jpg 480w, images/pl-transformation-harsh-768.jpg 768w, images/pl-transformation-harsh.jpg 1011w" sizes="(max-width:980px) calc(100vw - 64px), 33vw" width="1011" height="905" alt="Harsh - fat loss transformation, 31 lbs down in 5 months while working a 9-5, Pratyush Liftz client" title="Harsh - Team PL" loading="lazy" decoding="async"></picture></figure>
         <figcaption><b>Harsh</b><span>−31 lbs · 5 months</span></figcaption>
         <p class="tf-story">"I don't want to waste time. I want my best physique." Down 31 lbs while working a full-time 9-5, and not even halfway through the program.</p>
       </figure>
       <figure class="tf-card rv" style="transition-delay:.08s">
-        <figure><img src="images/pl-transformation-dad.jpg" alt="32-year-old dad lost 26 lbs in 6 months without giving up family time, Pratyush Liftz client" title="Dad rebuild - Team PL" loading="lazy"></figure>
+        <figure><picture><source type="image/webp" srcset="images/pl-transformation-dad-480.webp 480w, images/pl-transformation-dad-768.webp 768w, images/pl-transformation-dad.webp 1021w" sizes="(max-width:980px) calc(100vw - 64px), 33vw"><img src="images/pl-transformation-dad.jpg" srcset="images/pl-transformation-dad-480.jpg 480w, images/pl-transformation-dad-768.jpg 768w, images/pl-transformation-dad.jpg 1021w" sizes="(max-width:980px) calc(100vw - 64px), 33vw" width="1021" height="798" alt="32-year-old dad lost 26 lbs in 6 months without giving up family time, Pratyush Liftz client" title="Dad rebuild - Team PL" loading="lazy" decoding="async"></picture></figure>
         <figcaption><b>32-year-old Dad</b><span>−26 lbs · 6 months</span></figcaption>
         <p class="tf-story">A job, a kid and real responsibilities. A plan built around his lifestyle got him stronger, fitter and 26 lbs lighter, without giving up family time.</p>
       </figure>
       <figure class="tf-card rv" style="transition-delay:.16s">
-        <figure><img src="images/pl-transformation-parth.jpg" alt="Parth 90-day transformation - visible abs after two years of training, Pratyush Liftz client" title="Parth - Team PL" loading="lazy"></figure>
+        <figure><picture><source type="image/webp" srcset="images/pl-transformation-parth-480.webp 480w, images/pl-transformation-parth.webp 769w" sizes="(max-width:980px) calc(100vw - 64px), 33vw"><img src="images/pl-transformation-parth.jpg" srcset="images/pl-transformation-parth-480.jpg 480w, images/pl-transformation-parth.jpg 769w" sizes="(max-width:980px) calc(100vw - 64px), 33vw" width="769" height="669" alt="Parth 90-day transformation - visible abs after two years of training, Pratyush Liftz client" title="Parth - Team PL" loading="lazy" decoding="async"></picture></figure>
         <figcaption><b>Parth</b><span>90 days</span></figcaption>
         <p class="tf-story">Hadn't seen his abs in two years of training. One goal, his leanest physique, pulled together in 90 days.</p>
       </figure>
       <figure class="tf-card rv">
-        <figure><img src="images/pl-transformation-chandra.jpg" alt="Chandra Shekar progress - 96 kg to 86 kg in 3 months while working a 9-5, Pratyush Liftz client" title="Chandra Shekar - Team PL" loading="lazy"></figure>
+        <figure><picture><source type="image/webp" srcset="images/pl-transformation-chandra.webp 385w" sizes="(max-width:980px) calc(100vw - 64px), 33vw"><img src="images/pl-transformation-chandra.jpg" srcset="images/pl-transformation-chandra.jpg 385w" sizes="(max-width:980px) calc(100vw - 64px), 33vw" width="385" height="206" alt="Chandra Shekar progress - 96 kg to 86 kg in 3 months while working a 9-5, Pratyush Liftz client" title="Chandra Shekar - Team PL" loading="lazy" decoding="async"></picture></figure>
         <figcaption><b>Chandra Shekar</b><span>96 → 86 kg · 3 months</span></figcaption>
         <p class="tf-story">Stuck at 96 kg after trying to lose fat many times. In 3 months of 1:1 coaching he got to 86 kg and built habits around his corporate lifestyle.</p>
       </figure>
       <figure class="tf-card rv" style="transition-delay:.08s">
-        <figure><img src="images/pl-transformation-garv.jpg" alt="Garv 10-month transformation as a complete beginner, fat lost and muscle built, Pratyush Liftz client" title="Garv - Team PL" loading="lazy"></figure>
+        <figure><picture><source type="image/webp" srcset="images/pl-transformation-garv-480.webp 480w, images/pl-transformation-garv-768.webp 768w, images/pl-transformation-garv-1200.webp 1200w, images/pl-transformation-garv.webp 1724w" sizes="(max-width:980px) calc(100vw - 64px), 33vw"><img src="images/pl-transformation-garv.jpg" srcset="images/pl-transformation-garv-480.jpg 480w, images/pl-transformation-garv-768.jpg 768w, images/pl-transformation-garv-1200.jpg 1200w, images/pl-transformation-garv.jpg 1724w" sizes="(max-width:980px) calc(100vw - 64px), 33vw" width="1724" height="729" alt="Garv 10-month transformation as a complete beginner, fat lost and muscle built, Pratyush Liftz client" title="Garv - Team PL" loading="lazy" decoding="async"></picture></figure>
         <figcaption><b>Garv</b><span>10 months · beginner</span></figcaption>
         <p class="tf-story">A total beginner, tired of random advice online. One clear source for training and nutrition, eating what he likes, still losing fat and building muscle.</p>
       </figure>
       <figure class="tf-card rv" style="transition-delay:.16s">
-        <figure><img src="images/pl-transformation-fayaz.jpg" alt="Fayaz 30-day transformation working 40 hours a week away from home in Canada, Pratyush Liftz client" title="Fayaz - Team PL" loading="lazy"></figure>
+        <figure><picture><source type="image/webp" srcset="images/pl-transformation-fayaz-480.webp 480w, images/pl-transformation-fayaz-768.webp 768w, images/pl-transformation-fayaz-1200.webp 1200w, images/pl-transformation-fayaz.webp 1420w" sizes="(max-width:980px) calc(100vw - 64px), 33vw"><img src="images/pl-transformation-fayaz.jpg" srcset="images/pl-transformation-fayaz-480.jpg 480w, images/pl-transformation-fayaz-768.jpg 768w, images/pl-transformation-fayaz-1200.jpg 1200w, images/pl-transformation-fayaz.jpg 1420w" sizes="(max-width:980px) calc(100vw - 64px), 33vw" width="1420" height="811" alt="Fayaz 30-day transformation working 40 hours a week away from home in Canada, Pratyush Liftz client" title="Fayaz - Team PL" loading="lazy" decoding="async"></picture></figure>
         <figcaption><b>Fayaz</b><span>30 days · 40 hrs/week</span></figcaption>
         <p class="tf-story">Working long hours away from home in Canada. Through the tiring shifts and holidays, consistent fat loss and muscle gain in his first 30 days.</p>
       </figure>
@@ -592,10 +583,9 @@ images/image-metadata.md. Proof placed first, straight after the hero. -->
     </div>
     <div class="tf-stats">
       <!-- PL:STATS:START -->
-      <div class="rv"><b data-count="5" data-suffix="+">0</b><span>Years coaching</span></div>
-      <div class="rv" style="transition-delay:.06s"><b data-count="100" data-suffix="+"><i>0</i></b><span>Professionals coached</span></div>
-      <div class="rv" style="transition-delay:.12s"><b data-count="100" data-suffix="%">0</b><span>Plans built from scratch</span></div>
-      <div class="rv" style="transition-delay:.18s"><b data-count="0" data-suffix="">0</b><span>Crash diets. Ever</span></div>
+      <div class="rv"><b data-count="100" data-suffix="+"><i>0</i></b><span>Professionals trained</span></div>
+      <div class="rv" style="transition-delay:.06s"><b data-count="100" data-suffix="%">0</b><span>Plans built from scratch</span></div>
+      <div class="rv" style="transition-delay:.12s"><b data-count="0" data-suffix="">0</b><span>Crash diets. Ever</span></div>
     <!-- PL:STATS:END -->
     </div>
   </div>
@@ -610,7 +600,7 @@ the coaching philosophy. Vulnerability first, authority second. -->
   <div class="wrap">
     <div class="story-grid">
       <figure class="story-figure rv">
-        <img id="pl-story-img" data-cms-src="images.story" src="images/pl-pratyush-founder-poster.jpg" alt="Meet Pratyush - founder and online coach for busy professionals" title="Pratyush - Founder, Pratyush Liftz" loading="lazy">
+        <picture><source type="image/webp" srcset="images/pl-pratyush-founder-poster-480.webp 480w, images/pl-pratyush-founder-poster-768.webp 768w, images/pl-pratyush-founder-poster.webp 1082w" sizes="(max-width:900px) calc(100vw - 64px), 34vw"><img src="images/pl-pratyush-founder-poster.jpg" srcset="images/pl-pratyush-founder-poster-480.jpg 480w, images/pl-pratyush-founder-poster-768.jpg 768w, images/pl-pratyush-founder-poster.jpg 1082w" sizes="(max-width:900px) calc(100vw - 64px), 34vw" width="1082" height="1353" id="pl-story-img" data-cms-src="images.story" alt="Meet Pratyush - founder and online coach for busy professionals" title="Pratyush - Founder, Pratyush Liftz" loading="lazy" decoding="async"></picture>
         <figcaption><b data-cms="story.captionName">Pratyush</b><span data-cms="story.captionRole">Founder · Team PL</span></figcaption>
       </figure>
       <div class="story-copy">
@@ -669,18 +659,24 @@ auto-hides while it holds no cards. -->
   </div>
 </section>
 
-<!-- ═══ METHOD ═══════════════════════════════════════════════════
-WP: 3 inner sections with 3 columns each (number / title / text). -->
-<section class="method" id="method">
-  <div class="wrap">
-    <div class="rv">
-      <p class="eyebrow" data-cms="method.eyebrow">How it works</p>
-      <h2 data-cms="method.heading">Three steps. No guesswork.</h2>
+<!-- ═══ ENQUIRY ══════════════════════════════════════════════════
+WP: Fluent Forms / WPForms - route to email + CRM. This mockup opens
+Instagram DM with a prefilled message (mirrors the reference site's
+apply-via-DM flow). -->
+<section class="enquiry grain" id="enquire">
+  <div class="wrap enq-grid">
+    <div class="enq-left">
+      <p class="eyebrow rv" data-cms="enquiry.eyebrow">Limited client roster</p>
+      <h2 class="rv" style="transition-delay:.08s" data-cms="enquiry.heading">Start the <em>conversation.</em></h2>
+      <p class="sub rv" style="transition-delay:.16s" data-cms="enquiry.sub">Tell Pratyush where you are and where you want to be. You'll get a personal reply: an honest assessment of whether this system fits your life, and what it would look like if it does.</p>
+      <div class="enq-assure rv" style="transition-delay:.24s" data-cms="enquiry.assure"><b>An application is not a commitment.</b> No payment details, no pressure, no automated sales sequence. One conversation, then you decide.</div>
     </div>
-    <div class="steps">
-      <div class="step rv"><span class="num">01</span><h3 data-cms="method.step1.title">Apply</h3><p data-cms="method.step1.body">Send a DM or fill the short application. We talk about your goal, your schedule and your history, a straightforward conversation to see whether this is the right fit, on both sides.</p></div>
-      <div class="step rv"><span class="num">02</span><h3 data-cms="method.step2.title">Blueprint</h3><p data-cms="method.step2.body">Within 48 hours of onboarding you receive your complete system: training schedule, nutrition targets, tracking setup and the first habits we'll install, all built around your real week.</p></div>
-      <div class="step rv"><span class="num">03</span><h3 data-cms="method.step3.title">Execute &amp; adjust</h3><p data-cms="method.step3.body">You train, you eat, you report. Every week the data comes back, the plan evolves, and the results compound, through busy seasons, travel and real life. Finish with a maintenance plan that holds.</p></div>
+    <div class="form rv" style="transition-delay:.2s">
+      <div class="field"><label data-cms="enquiry.formLabel">Your message</label>
+        <p class="dm-preview" data-cms="enquiry.formPreview">A short application: your goal, your schedule and where you are now. It takes about two minutes.</p>
+      </div>
+      <a class="btn" data-cms-href="links.apply" href="/apply/" style="justify-content:center"><span data-cms="enquiry.ctaLabel">Apply now</span> <span class="arrow">→</span></a>
+      <p class="form-note" data-cms="enquiry.formNote">Opens the application form. Pratyush reads every submission personally and replies himself, not a bot, not a sales team.</p>
     </div>
   </div>
 </section>
@@ -703,28 +699,6 @@ WP: Elementor Pro accordion (or Kadence accordion block). -->
       <div class="faq-item rv"><button class="faq-q">How soon will I see results?</button><div class="faq-a"><p>Most clients see measurable change on the scale and tape within three to four weeks, and visible change in photos by weeks six to eight. The honest answer: speed depends on your consistency, and consistency is exactly what the system is built to protect.</p></div></div>
       <div class="faq-item rv"><button class="faq-q">How long do I sign up for?</button><div class="faq-a"><p>Coaching runs in 3, 6 or 12-month commitments. Longer isn't upselling, it's how lasting change actually happens. Every client finishes with a maintenance plan so the results hold once coaching ends.</p></div></div>
       <!-- PL:FAQ:END -->
-    </div>
-  </div>
-</section>
-
-<!-- ═══ ENQUIRY ══════════════════════════════════════════════════
-WP: Fluent Forms / WPForms - route to email + CRM. This mockup opens
-Instagram DM with a prefilled message (mirrors the reference site's
-apply-via-DM flow). -->
-<section class="enquiry grain" id="enquire">
-  <div class="wrap enq-grid">
-    <div class="enq-left">
-      <p class="eyebrow rv" data-cms="enquiry.eyebrow">Limited client roster</p>
-      <h2 class="rv" style="transition-delay:.08s" data-cms="enquiry.heading">Start the <em>conversation.</em></h2>
-      <p class="sub rv" style="transition-delay:.16s" data-cms="enquiry.sub">Tell Pratyush where you are and where you want to be. You'll get a personal reply: an honest assessment of whether this system fits your life, and what it would look like if it does.</p>
-      <div class="enq-assure rv" style="transition-delay:.24s" data-cms="enquiry.assure"><b>An application is not a commitment.</b> No payment details, no pressure, no automated sales sequence. One conversation, then you decide.</div>
-    </div>
-    <div class="form rv" style="transition-delay:.2s">
-      <div class="field"><label data-cms="enquiry.formLabel">Your message</label>
-        <p class="dm-preview" data-cms="enquiry.formPreview">A short application: your goal, your schedule and where you are now. It takes about two minutes.</p>
-      </div>
-      <a class="btn" data-cms-href="links.apply" href="/apply/" style="justify-content:center"><span data-cms="enquiry.ctaLabel">Apply now</span> <span class="arrow">→</span></a>
-      <p class="form-note" data-cms="enquiry.formNote">Opens the application form. Pratyush reads every submission personally and replies himself, not a bot, not a sales team.</p>
     </div>
   </div>
 </section>
@@ -760,7 +734,8 @@ WP: Elementor footer template. Keep it quiet - one row. -->
 <footer>
   <div class="wrap foot">
     <a class="brand" href="#"><img src="images/pl-logo.png" alt="Pratyush Liftz logo" title="Pratyush Liftz">Pratyush&nbsp;Liftz</a>
-    <div class="foot-links"><a href="#story">Story</a><a href="#system">System</a><a href="#results">Results</a><a href="/blog/">Blog</a><a href="#faq">FAQ</a><a data-cms-href="links.instagram" href="https://www.instagram.com/pratyushliftz/" target="_blank" rel="noopener">Instagram</a><a data-cms-href="links.email" href="mailto:hello@pratyushliftz.com">Email</a><a data-cms-href="links.youtube" href="https://www.youtube.com/@pratyushliftz" target="_blank" rel="noopener">YouTube</a></div>
+    <div class="foot-links"><a href="#story">Story</a><a href="#system">System</a><a href="#results">Results</a><a href="/blog/">Blog</a><a href="#faq">FAQ</a></div>
+    <div class="foot-social"><a data-cms-href="links.instagram" href="https://www.instagram.com/pratyushliftz/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></a><a data-cms-href="links.youtube" href="https://www.youtube.com/@pratyushliftz" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="M10.3 9.2l5 2.8-5 2.8z" fill="currentColor" stroke="none"/></svg></a><a data-cms-href="links.email" href="mailto:hello@pratyushliftz.com" aria-label="Email Pratyush" title="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="M3.5 7.5l8.5 6 8.5-6"/></svg></a></div>
     <small data-cms="footer.copyright">© 2026 Pratyush Liftz. Lose fat while building muscle, even with your busy routine.</small>
   </div>
 </footer>
@@ -807,7 +782,7 @@ const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* Headings rise a word at a time. Splitting happens in the DOM so inline
    <em>/<br> survive; each word gets its own mask and a stagger delay. */
 (function(){
-  const heads=document.querySelectorAll('.transf h2,.system h2,.videos h2,.method h2,.faq h2,.enquiry h2');
+  const heads=document.querySelectorAll('.transf h2,.system h2,.videos h2,.faq h2,.enquiry h2');
   if(!heads.length) return;
   const wrap=(node)=>{
     for(const child of [...node.childNodes]){

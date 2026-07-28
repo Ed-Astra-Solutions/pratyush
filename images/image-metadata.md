@@ -20,3 +20,21 @@ Source notes:
 | pl-transformation-chandra.jpg | real (image03) | Chandra Shekar — Team PL | Chandra Shekar — 96 kg to 86 kg in 3 months with a 9-5 |
 | pl-transformation-garv.jpg | real (image02) | Garv — Team PL | Garv 10-month transformation as a complete beginner |
 | pl-transformation-fayaz.jpg | real (image08) | Fayaz — Team PL | Fayaz 30-day transformation working 40 hrs/week in Canada |
+
+## Responsive variants
+
+Every photo above (logo and OG card excepted) also ships as resized siblings so
+a phone downloads a fraction of the bytes:
+
+- `<name>-480.jpg` / `-768.jpg` / `-1200.jpg` — narrower JPEGs, never upscaled,
+  so a file only gets the widths smaller than its original.
+- `<name>.webp` plus a `.webp` at each of those widths — roughly half the size
+  of the JPEG, served through `<picture><source type="image/webp">`.
+
+The page picks one with `srcset`/`sizes`; the full-size `.jpg` stays the `src`,
+so the lightbox and any client without `srcset` still get the original.
+
+Adding a photo: regenerate the variants, then add the file to the `VARIANTS`
+map in `js/cms.js` (`'images/x.jpg': [width, height, [480, 768, ...]]`). An
+image missing from that map still works — it just renders as a plain `<img>`
+at full size.

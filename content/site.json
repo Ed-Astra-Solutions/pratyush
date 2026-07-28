@@ -63,22 +63,6 @@
     "heading": "Proof over <em>promises.</em>",
     "sub": "Different jobs, different schedules, same system. Every client below did the work around a full, busy life, not in spite of it."
   },
-  "method": {
-    "eyebrow": "How it works",
-    "heading": "Three steps. No guesswork.",
-    "step1": {
-      "title": "Apply",
-      "body": "Send a DM or fill the short application. We talk about your goal, your schedule and your history, a straightforward conversation to see whether this is the right fit, on both sides."
-    },
-    "step2": {
-      "title": "Blueprint",
-      "body": "Within 48 hours of onboarding you receive your complete system: training schedule, nutrition targets, tracking setup and the first habits we'll install, all built around your real week."
-    },
-    "step3": {
-      "title": "Execute &amp; adjust",
-      "body": "You train, you eat, you report. Every week the data comes back, the plan evolves, and the results compound, through busy seasons, travel and real life. Finish with a maintenance plan that holds."
-    }
-  },
   "faq": {
     "eyebrow": "Before you ask",
     "heading": "Honest answers to fair questions.",
@@ -167,14 +151,9 @@
   ],
   "stats": [
     {
-      "count": "5",
-      "suffix": "+",
-      "label": "Years coaching"
-    },
-    {
       "count": "100",
       "suffix": "+",
-      "label": "Professionals coached"
+      "label": "Professionals trained"
     },
     {
       "count": "100",
