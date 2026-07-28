@@ -72,9 +72,9 @@
   "enquiry": {
     "eyebrow": "Limited client roster",
     "heading": "Start the <em>conversation.</em>",
-    "sub": "Tell Pratyush where you are and where you want to be. You'll get a personal reply: an honest assessment of whether this system fits your life, and what it would look like if it does.",
+    "sub": "Tell me where you are and where you want to be. You'll get a reply in 24 hours: an honest assessment of whether this system fits your life, and what it would look like if it does.",
     "assure": "<b>An application is not a commitment.</b> No payment details, no pressure, no automated sales sequence. One conversation, then you decide.",
-    "formLabel": "Your message",
+    "formLabel": "What I need from you.",
     "formPreview": "A short application: your goal, your schedule and where you are now. It takes about two minutes.",
     "ctaLabel": "Apply now",
     "formNote": "Opens the application form. Pratyush reads every submission personally and replies himself, not a bot, not a sales team."
@@ -255,7 +255,7 @@
       "url": ""
     }
   ],
-  "updatedAt": "2026-07-28T12:01:17.880Z",
+  "updatedAt": "2026-07-28T12:04:59.394Z",
   "updatedBy": "pratyushliftzz",
   "videoClips": [],
   "videos": {
