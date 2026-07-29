@@ -76,7 +76,7 @@
     "assure": "<b>An application is not a commitment.</b> It's me trying to assess if we'd be a good fit to go on with your fitness goals.",
     "formLabel": "What I need from you.",
     "formPreview": "A short application: your goal, your schedule and where you are now. It takes about two minutes.",
-    "ctaLabel": "Apply now",
+    "ctaLabel": "Apply",
     "formNote": "Opens the application form. I read every submission personally and reply myself, not a bot or a sales team."
   },
   "footer": {
@@ -257,7 +257,7 @@
       "url": ""
     }
   ],
-  "updatedAt": "2026-07-28T19:52:37.513Z",
+  "updatedAt": "2026-07-29T19:44:33.730Z",
   "updatedBy": "pratyushliftzz",
   "videoClips": [],
   "videos": {
