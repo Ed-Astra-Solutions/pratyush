@@ -796,12 +796,20 @@ document.documentElement.classList.remove('no-js');
           website: $('#pl-website')?.value || '',
         }),
       });
-      if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || `HTTP ${res.status}`);
+      if (!res.ok) {
+        // The server explains the refusals a person can act on — being asked
+        // to try again later reads very differently from a generic failure,
+        // and the generic copy sends them off to retry immediately instead.
+        const said = (await res.json().catch(() => ({}))).error;
+        const err = new Error(said || `HTTP ${res.status}`);
+        err.explained = Boolean(said);
+        throw err;
+      }
       show('success');
       celebrate();
     } catch (err) {
       if (btn) { btn.disabled = false; $('.label', btn).textContent = CFG.labels.submit; }
-      setError(screen, CFG.labels.error);
+      setError(screen, err.explained ? err.message : CFG.labels.error);
       console.error(err);
     }
   }
