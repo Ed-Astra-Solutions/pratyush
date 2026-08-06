@@ -30,7 +30,7 @@
     "sign": "<b>Pratyush</b> · Founder, Team PL"
   },
   "system": {
-    "eyebrow": "What every client gets",
+    "eyebrow": "What every one of my client gets",
     "heading": "Everything is built for you, Nothing Generic.<br>",
     "sub": "Me as your coach, and a system. Every part of it adjusts to your week and goals.",
     "card1": {
@@ -61,7 +61,7 @@
   "results": {
     "eyebrow": "Client results",
     "heading": "Proof over <em>promises.</em>",
-    "sub": "Different jobs, different schedules, same system. Every client below did the work around a full, busy life, not in spite of it."
+    "sub": "Different jobs, different schedules, same system. Every person below did the work around a full, busy life, not in spite of it."
   },
   "faq": {
     "eyebrow": "Before you ask",
@@ -261,7 +261,7 @@
       "url": ""
     }
   ],
-  "updatedAt": "2026-08-06T07:58:12.573Z",
+  "updatedAt": "2026-08-06T07:59:34.817Z",
   "updatedBy": "pratyushliftzz",
   "videoClips": [],
   "videos": {
