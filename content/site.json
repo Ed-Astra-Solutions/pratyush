@@ -102,15 +102,6 @@
   },
   "transformations": [
     {
-      "image": "images/pl-transformation-parth.jpg",
-      "name": "Parth",
-      "stat": "90 days",
-      "alt": "Parth 90-day transformation - visible abs after two years of training, Pratyush Liftz client",
-      "title": "Parth - Team PL",
-      "story": "He hadn't seen his abs in two years of training. When he found out about my coaching, he asked me to get him to his one goal: his leanest physique. We pulled it off together in 90 days.",
-      "videoWide": false
-    },
-    {
       "image": "images/pl-whatsapp-image-2026-07-28-at-17-42-38-ms4m9crv.jpg",
       "name": "Ravi, 32",
       "stat": "−14 kgs/ 31 lbs · 6 months",
@@ -118,6 +109,18 @@
       "title": "Dad rebuild - Team PL",
       "story": "With a job, a kid and life's responsibilities, he needed a plan built around his lifestyle. Not only did he lose 31 lbs, he understands his body and nutrition better than ever, and is sustaining the transformation without giving up family time.",
       "full": "images/pl-whatsapp-image-2026-07-28-at-17-42-38-ms4m9m69.jpg"
+    },
+    {
+      "name": "Dev",
+      "stat": "-10 kgs · 3 Months",
+      "image": "images/pl-whatsapp-image-2026-08-04-at-11-25-16-msh7x04h.jpg",
+      "full": "",
+      "video": "",
+      "videoType": "embed",
+      "videoWide": false,
+      "story": "Dev is a driven business owner. Having gone through many ups &amp; downs, and achieving multiple career goals throughout his life, he decided it was time to take control of his fitness and get it up to par. 3 Months in, and he's 10 kgs down. We've set sail to our newfound goal: Abs by the end of 2026.<br>",
+      "alt": "",
+      "title": ""
     },
     {
       "image": "images/pl-transformation-harsh.jpg",
@@ -128,12 +131,13 @@
       "story": "\"I don't want to waste time. I want my best physique.\" Down 31 lbs while working a full-time 9-5, and not even halfway through the program."
     },
     {
-      "image": "images/pl-transformation-chandra.jpg",
-      "name": "Chandra Shekar",
-      "stat": "96 → 86 kg · 3 months",
-      "alt": "Chandra Shekar progress - 96 kg to 86 kg in 3 months while working a 9-5, Pratyush Liftz client",
-      "title": "Chandra Shekar - Team PL",
-      "story": "Stuck at 96 kg after trying to lose fat many times. In 3 months of 1:1 coaching he got to 86 kg and built habits around his corporate lifestyle."
+      "image": "images/pl-transformation-parth.jpg",
+      "name": "Parth",
+      "stat": "90 days",
+      "alt": "Parth 90-day transformation - visible abs after two years of training, Pratyush Liftz client",
+      "title": "Parth - Team PL",
+      "story": "He hadn't seen his abs in two years of training. When he found out about my coaching, he asked me to get him to his one goal: his leanest physique. We pulled it off together in 90 days.",
+      "videoWide": false
     },
     {
       "image": "images/pl-transformation-garv.jpg",
@@ -150,18 +154,6 @@
       "alt": "Fayaz 30-day transformation working 40 hours a week away from home in Canada, Pratyush Liftz client",
       "title": "Fayaz - Team PL",
       "story": "Working long hours away from home in Canada. Through the tiring shifts and holidays, consistent fat loss and muscle gain in his first 30 days."
-    },
-    {
-      "name": "Dev",
-      "stat": "-10 kgs · 3 Months",
-      "image": "images/pl-whatsapp-image-2026-08-04-at-11-25-16-msh7x04h.jpg",
-      "full": "",
-      "video": "",
-      "videoType": "embed",
-      "videoWide": false,
-      "story": "Dev is a driven business owner. Having gone through many ups &amp; downs, and achieving multiple career goals throughout his life, he decided it was time to take control of his fitness and get it up to par. 3 Months in, and he's 10 kgs down. We've set sail to our newfound goal: Abs by the end of 2026.<br>",
-      "alt": "",
-      "title": ""
     }
   ],
   "stats": [
@@ -269,7 +261,7 @@
       "url": ""
     }
   ],
-  "updatedAt": "2026-08-06T07:56:41.999Z",
+  "updatedAt": "2026-08-06T07:58:12.573Z",
   "updatedBy": "pratyushliftzz",
   "videoClips": [],
   "videos": {
