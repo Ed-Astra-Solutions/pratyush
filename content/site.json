@@ -261,7 +261,7 @@
       "url": ""
     }
   ],
-  "updatedAt": "2026-08-17T17:18:17.636Z",
+  "updatedAt": "2026-08-18T06:02:12.106Z",
   "updatedBy": "pratyushliftzz",
   "videoClips": [],
   "videos": {
@@ -272,7 +272,7 @@
   "applyForm": {
     "meta": {
       "title": "Apply for 1:1 Coaching",
-      "description": "Apply for one-to-one online coaching with Pratyush. A short application about your goal, your schedule and where you are now. Takes about two minutes."
+      "description": "1:1 Fitness Coaching By Pratyush.<br>Apply now with a short application about your goal, your schedule and where you are now."
     },
     "welcome": {
       "eyebrow": "Limited client roster",
@@ -283,7 +283,7 @@
     },
     "success": {
       "title": "You've taken the first step!",
-      "body": "If we're a good fit, I'll reach out to you for a video-consultation within the next 12-24 hours after reviewing your application.",
+      "body": "If we're a good fit, I'll reach out to you within the next 12-24 hours after reviewing your application.",
       "cta": "Back to the site"
     },
     "disqualify": {
@@ -304,30 +304,26 @@
     },
     "steps": [
       {
-        "id": "source",
-        "type": "single",
-        "question": "How did you find out about my coaching?",
-        "required": true,
-        "options": [
-          "Instagram",
-          "YouTube",
-          "LinkedIn",
-          "Referral from a friend/previous client"
-        ]
-      },
-      {
         "id": "age",
         "type": "single",
         "question": "How old are you?",
         "required": true,
         "options": [
           "<21",
-          "22-24",
-          "25 - 30",
+          "21-25",
+          "26-30",
           "31 - 40",
-          "41-45",
+          "40-45",
           "45+"
         ]
+      },
+      {
+        "id": "stats",
+        "type": "text",
+        "question": "What are your current bodyweight &amp; height?",
+        "required": true,
+        "description": "Eg: 80 kgs, 185cm.",
+        "placeholder": "Your answer here..."
       },
       {
         "id": "goal",
@@ -345,11 +341,11 @@
       {
         "id": "blockers",
         "type": "multi",
-        "question": "What's stopping you from hitting your goal right now?",
+        "question": "What's stopping you from hitting your goal by yourself?",
         "required": true,
         "description": "You can choose multiple options.",
         "options": [
-          "Lack of a proper structure",
+          "Lack of a proper structure/knowledge",
           "I don't find enough time",
           "No Accountability",
           "I'm just lazy"
@@ -367,15 +363,12 @@
         ]
       },
       {
-        "id": "startWhen",
-        "type": "single",
-        "question": "If we're a good fit, how soon are you ready to start?",
+        "id": "profession",
+        "type": "text",
+        "question": "What is your profession?",
         "required": true,
-        "options": [
-          "Immediately, I don't wanna waste anymore time.",
-          "Within a week.",
-          "Probably next month, not sure."
-        ]
+        "description": "Eg: Software Engineer, Architect, Banker, etc...",
+        "placeholder": "Your answer here..."
       },
       {
         "id": "invest",
@@ -383,40 +376,24 @@
         "question": "Are you at a spot to financially invest in your fitness journey?",
         "required": true,
         "options": [
-          "Yes, Sign me up!",
+          "Yes, I've no issues.",
           "Money is a bit tight, but I will make it work.",
           "No, I'm not ready to meaningfully invest."
         ],
         "disqualifyOn": "No, I'm not ready to meaningfully invest."
       },
       {
-        "id": "profession",
-        "type": "text",
-        "question": "What is your profession/role?",
-        "required": true,
-        "description": "Eg: Software Engineer, Architect, Banker, etc...",
-        "placeholder": "Your answer here..."
-      },
-      {
-        "id": "stats",
-        "type": "text",
-        "question": "What is your current bodyweight & height?",
-        "required": true,
-        "description": "Eg: 80 kgs, 185cm.",
-        "placeholder": "Your answer here..."
-      },
-      {
         "id": "location",
         "type": "text",
-        "question": "Where are you currently based?",
+        "question": "Where are you based?",
         "required": true,
-        "description": "Eg: Mumbai, India",
+        "description": "Eg: California, United States",
         "placeholder": "Your answer here..."
       },
       {
         "id": "why_do_you_want_to_transform_you",
         "type": "text",
-        "question": "Why do you want to transform yourself?",
+        "question": "Why do you want to transform yourself now, why not later?",
         "required": false,
         "options": [
           "First answer",
