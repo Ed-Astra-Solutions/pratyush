@@ -201,18 +201,6 @@
   ],
   "posts": [
     {
-      "slug": "test",
-      "title": "Test",
-      "tag": "",
-      "date": "2026-07-28",
-      "status": "draft",
-      "excerpt": "",
-      "cover": "",
-      "coverAlt": "",
-      "body": "",
-      "url": ""
-    },
-    {
       "slug": "eat-out-and-still-lose-fat",
       "title": "5 Simple Habits That Actually Move the Needle",
       "tag": "Nutrition",
@@ -261,7 +249,7 @@
       "url": ""
     }
   ],
-  "updatedAt": "2026-09-24T17:29:37.397Z",
+  "updatedAt": "2026-09-27T17:02:10.646Z",
   "updatedBy": "pratyushliftzz",
   "videoClips": [],
   "videos": {
